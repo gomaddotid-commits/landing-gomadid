@@ -103,7 +103,26 @@ const router = {
         const mainContent = document.getElementById('main-content');
         const url = this.routes[path];
         
+        // ⬇️ FIX: Kalau route tidak ditemukan, cek apakah ini anchor link internal
         if (!url) {
+            // Coba cari elemen dengan ID tersebut di halaman
+            const element = document.getElementById(path);
+            if (element) {
+                // Ini anchor link di halaman yang sama — scroll ke elemen
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                
+                // Update sidebar active link jika ada
+                document.querySelectorAll('.doc-sidebar-link').forEach(link => {
+                    link.classList.remove('active');
+                    const href = link.getAttribute('onclick') || '';
+                    if (href.includes(`'${path}'`)) {
+                        link.classList.add('active');
+                    }
+                });
+                return;
+            }
+            
+            // Kalau benar-benar tidak ada, tampilkan 404
             mainContent.innerHTML = `
                 <div class="text-center py-20">
                     <div class="text-6xl font-bold text-[#C1121F] mb-4">404</div>
