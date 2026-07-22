@@ -17,7 +17,7 @@
                     <a href="#schedule" class="doc-sidebar-link" onclick="scrollToSection(event, 'schedule')">📅 Buat Jadwal</a>
                     <a href="#pricing" class="doc-sidebar-link" onclick="scrollToSection(event, 'pricing')">💲 Atur Harga</a>
                     <a href="#transfer" class="doc-sidebar-link" onclick="scrollToSection(event, 'transfer')">🔄 Transfer Penumpang</a>
-                    <a href="#wallet" class="doc-sidebar-link" onclick="scrollToSection(event, 'wallet')">💰 Dompet</a>
+                    <a href="#wallet" class="doc-sidebar-link" onclick="scrollToSection(event, 'wallet')">💵 Pendapatan</a>
                     <a href="#withdrawal" class="doc-sidebar-link" onclick="scrollToSection(event, 'withdrawal')">🏦 Penarikan</a>
                     <a href="#rental" class="doc-sidebar-link" onclick="scrollToSection(event, 'rental')">🚗 Setup Rental</a>
                     <a href="#cod" class="doc-sidebar-link" onclick="scrollToSection(event, 'cod')">🚗 COD & Deposit</a>
@@ -217,7 +217,7 @@
                         <h3 class="font-bold text-lg mb-3">Internal Transfer</h3>
                         <p class="text-sm text-gray-500 dark:text-gray-400 font-light">
                             Transfer ke jadwal lain milik <strong>agency sendiri</strong>. Otomatis disetujui. 
-                            Penumpang pindah jadwal, wallet disesuaikan.
+                            Penumpang pindah jadwal, pendapatan agency akan disesuaikan.
                         </p>
                     </div>
                     <div class="card">
@@ -234,31 +234,31 @@
             <div id="wallet">
                 <div class="flex items-center gap-3 mb-6">
                     <div class="h-px w-8 bg-[#C1121F]/40"></div>
-                    <h2 class="text-2xl font-bold">💰 Dompet Digital</h2>
+                    <h2 class="text-2xl font-bold">💵 Pendapatan Agency</h2>
                 </div>
                 
                 <div class="card">
                     <div class="space-y-3">
                         <div class="flex justify-between items-center p-3 bg-[#F5F5F5] dark:bg-[#1a1a1a] rounded-xl">
                             <div>
-                                <span class="font-medium text-sm">Saldo Tersedia</span>
-                                <p class="text-xs text-gray-500 dark:text-gray-400 font-light">Dari booking selesai, bisa ditarik</p>
+                                <span class="font-medium text-sm">Dana Siap Dicairkan</span>
+                                <p class="text-xs text-gray-500 dark:text-gray-400 font-light">Hasil penjualan yang telah selesai dan siap dicairkan ke rekening</p>
                             </div>
-                            <span class="text-green-600 font-bold">Bisa ditarik</span>
+                            <span class="text-green-600 font-bold">Siap dicairkan</span>
                         </div>
                         <div class="flex justify-between items-center p-3 bg-[#F5F5F5] dark:bg-[#1a1a1a] rounded-xl">
                             <div>
-                                <span class="font-medium text-sm">Saldo Pending</span>
-                                <p class="text-xs text-gray-500 dark:text-gray-400 font-light">Menunggu perjalanan selesai</p>
+                                <span class="font-medium text-sm">Pendapatan Dalam Proses</span>
+                                <p class="text-xs text-gray-500 dark:text-gray-400 font-light">Dalam proses perjalanan selesai dan proses settlement</p>
                             </div>
-                            <span class="text-yellow-600 font-bold">Menunggu</span>
+                            <span class="text-yellow-600 font-bold">Dalam proses</span>
                         </div>
                         <div class="flex justify-between items-center p-3 bg-[#F5F5F5] dark:bg-[#1a1a1a] rounded-xl">
                             <div>
-                                <span class="font-medium text-sm">Saldo Deposit</span>
-                                <p class="text-xs text-gray-500 dark:text-gray-400 font-light">Jaminan untuk fitur COD</p>
+                                <span class="font-medium text-sm">Deposit Jaminan COD</span>
+                                <p class="text-xs text-gray-500 dark:text-gray-400 font-light">Dana jaminan untuk layanan COD</p>
                             </div>
-                            <span class="text-blue-600 font-bold">Untuk COD</span>
+                            <span class="text-blue-600 font-bold">Jaminan</span>
                         </div>
                     </div>
                 </div>
@@ -268,7 +268,7 @@
             <div id="withdrawal">
                 <div class="flex items-center gap-3 mb-6">
                     <div class="h-px w-8 bg-[#C1121F]/40"></div>
-                    <h2 class="text-2xl font-bold">🏦 Penarikan Dana</h2>
+                    <h2 class="text-2xl font-bold">🏦 Pencairan Pendapatan</h2>
                 </div>
                 <div class="card">
                     <ul class="space-y-2 text-sm text-gray-500 dark:text-gray-400 font-light">
@@ -304,17 +304,17 @@
             <div id="cod">
                 <div class="flex items-center gap-3 mb-6">
                     <div class="h-px w-8 bg-[#C1121F]/40"></div>
-                    <h2 class="text-2xl font-bold">🚗 COD & Saldo Deposit</h2>
+                    <h2 class="text-2xl font-bold">🚗 COD & Deposit Jaminan COD</h2>
                 </div>
                 <div class="card">
                     <p class="text-gray-500 dark:text-gray-400 font-light leading-relaxed mb-4">
-                        Untuk mengaktifkan fitur COD di jadwal, agency perlu <strong>Saldo Deposit</strong> sebagai jaminan.
+                        Untuk mengaktifkan fitur COD di jadwal, agency perlu <strong>Deposit Jaminan COD</strong> sebagai jaminan.
                     </p>
                     <div class="bg-[#F5F5F5] dark:bg-[#1a1a1a] rounded-xl p-4">
-                        <p class="text-sm font-medium mb-2">Cara mengisi Saldo Deposit:</p>
+                        <p class="text-sm font-medium mb-2">Cara mengisi Deposit Jaminan COD:</p>
                         <ul class="text-sm text-gray-500 dark:text-gray-400 font-light space-y-1 list-disc list-inside">
-                            <li>Transfer dari Saldo Tersedia (gratis, tanpa biaya)</li>
-                            <li>Top Up via Midtrans (biaya admin Rp 3.500)</li>
+                            <li>Transfer dari Dana Siap Dicairkan (gratis, tanpa biaya)</li>
+                            <li>Setor Deposit melalui Midtrans (biaya admin Rp 3.500)</li>
                         </ul>
                     </div>
                 </div>

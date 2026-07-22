@@ -26,7 +26,7 @@
                 <h2 class="text-xl font-bold">🔄 Alur Booking & Pembayaran Travel</h2>
             </div>
             <p class="text-gray-500 dark:text-gray-400 font-light text-sm mb-6">
-                Dari customer mencari jadwal sampai dana masuk ke saldo Agency.
+                Dari customer mencari jadwal sampai pendapatan agency siap diproses untuk settlement.
             </p>
             <div class="mermaid">
 flowchart TB
@@ -60,7 +60,7 @@ flowchart TB
     T --> U[Agency Mulai Jadwal]
     U --> V[Sopir Jemput & Antar]
     V --> W[Booking Completed]
-    W --> X[💰 Dana Masuk Saldo Agency]
+    W --> X[💰 Pendapatan Agency Tercatat]
     
     style A fill:#C1121F,color:#fff
     style X fill:#16a34a,color:#fff
@@ -133,7 +133,7 @@ flowchart TB
     E --> I[Penumpang Pindah Jadwal]
     G --> I
     
-    I --> J[💰 Wallet Adjustment]
+    I --> J[💰 Penyesuaian Pendapatan]
     J --> K[📢 Notifikasi ke Customer]
     K --> L[🎉 Selesai]
     
@@ -172,7 +172,7 @@ flowchart TB
     
     A6 --> C[✅ Rental Selesai]
     B6 --> C
-    C --> D[💰 Dana Masuk Saldo Agency]
+    C --> D[💰 Pendapatan Agency Tercatat]
     
     style A1 fill:#3b82f6,color:#fff
     style D fill:#16a34a,color:#fff
@@ -213,7 +213,7 @@ flowchart LR
         <div class="card mb-8 fade-in-up">
             <div class="flex items-center gap-3 mb-6">
                 <div class="h-px w-8 bg-[#C1121F]/40"></div>
-                <h2 class="text-xl font-bold">💰 Alur Wallet & Penarikan Agency</h2>
+                <h2 class="text-xl font-bold">💰 Alur Settlement & Pencairan Pendapatan Agency</h2>
             </div>
             <p class="text-gray-500 dark:text-gray-400 font-light text-sm mb-6">
                 Bagaimana uang mengalir dari customer ke rekening Agency.
@@ -221,20 +221,20 @@ flowchart LR
             <div class="mermaid">
 flowchart TB
     A[💳 Customer Bayar] --> B[Payment PAID]
-    B --> C[💰 Dana Masuk Saldo Pending]
+    B --> C[💰 Pendapatan Dalam Proses]
     C --> D[🚐 Perjalanan Selesai]
-    D --> E[✅ Dana Pindah ke Saldo Tersedia]
+    D --> E[✅ Dana Siap Dicairkan]
     
     E --> F{Agency Mau Tarik?}
     F -->|Ya| G[📝 Ajukan Penarikan]
-    F -->|Tidak| H[💵 Dana di Saldo]
+    F -->|Tidak| H[💵 Dana Menunggu Pencairan]
     
     G --> I{Jumlah?}
     I -->|&lt; 5 Juta| J[✅ Auto-Approve]
     I -->|&ge; 5 Juta| K[👤 Admin Review]
     
     K -->|Setuju| L[✅ Approved]
-    K -->|Tolak| M[❌ Rejected + Kembali ke Saldo]
+    K -->|Tolak| M[❌ Rejected + Kembali ke Dana Siap Dicairkan]
     
     J --> N[🏦 Proses Disbursement]
     L --> N
@@ -268,7 +268,7 @@ flowchart TB
         A1[🏢 Setup Profil]
         A2[📅 Buat Jadwal]
         A3[👨‍✈️ Kelola Driver]
-        A4[💰 Dompet & Tarik]
+        A4[💵 Pendapatan & Pencairan]
         A5[🚗 Setup Rental]
     end
     
