@@ -201,74 +201,75 @@
 
 <script>
 // ═══════════════════════════════════
-// REAL FORMSPREE CONTACT FORM
+// REAL FORMSPREE CONTACT FORM (AJAX)
 // ═══════════════════════════════════
-document.getElementById('contact-form').addEventListener('submit', async function(event) {
-    event.preventDefault();
-    
-    const form = event.target;
-    const btn = document.getElementById('contact-submit-btn');
-    const originalText = btn.textContent;
-    const formData = new FormData(form);
-    
-    // Disable button
-    btn.disabled = true;
-    btn.textContent = '⏳ Mengirim...';
-    btn.classList.add('opacity-70', 'cursor-not-allowed');
-    
-    try {
-        const response = await fetch(form.action, {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'Accept': 'application/json'
+const contactForm = document.getElementById('contact-form');
+
+if (contactForm) {
+    contactForm.addEventListener('submit', async function(event) {
+        event.preventDefault();
+        
+        const btn = document.getElementById('contact-submit-btn');
+        const originalHTML = btn.innerHTML;
+        const formData = new FormData(contactForm);
+        
+        // Loading state
+        btn.disabled = true;
+        btn.innerHTML = '⏳ Mengirim...';
+        btn.classList.add('opacity-70', 'cursor-not-allowed');
+        
+        try {
+            const response = await fetch(contactForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            
+            if (response.ok) {
+                // Success!
+                contactForm.reset();
+                
+                const successEl = document.getElementById('contact-success');
+                const errorEl = document.getElementById('contact-error');
+                
+                if (successEl) {
+                    successEl.classList.remove('hidden');
+                    successEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+                if (errorEl) errorEl.classList.add('hidden');
+                
+                // Hide success after 8 seconds
+                setTimeout(() => {
+                    if (successEl) successEl.classList.add('hidden');
+                }, 8000);
+                
+            } else {
+                // Server error
+                const errorEl = document.getElementById('contact-error');
+                if (errorEl) {
+                    errorEl.innerHTML = '❌ Gagal mengirim pesan. Silakan coba lagi nanti.';
+                    errorEl.classList.remove('hidden');
+                    errorEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
             }
-        });
-        
-        if (response.ok) {
-            // Success
-            form.reset();
             
-            const successEl = document.getElementById('contact-success');
+        } catch (error) {
+            // Network error
             const errorEl = document.getElementById('contact-error');
+            if (errorEl) {
+                errorEl.innerHTML = '❌ Gagal terhubung ke server. Coba WhatsApp saja: <a href="https://wa.me/6285138094643" class="underline font-bold">Chat WhatsApp</a>';
+                errorEl.classList.remove('hidden');
+                errorEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
             
-            successEl.classList.remove('hidden');
-            errorEl.classList.add('hidden');
-            
-            successEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            
-            setTimeout(() => {
-                successEl.classList.add('hidden');
-            }, 8000);
-            
-        } else {
-            // Error
-            const errorEl = document.getElementById('contact-error');
-            errorEl.classList.remove('hidden');
-            errorEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            
-            setTimeout(() => {
-                errorEl.classList.add('hidden');
-            }, 8000);
+        } finally {
+            // Reset button
+            btn.disabled = false;
+            btn.innerHTML = originalHTML;
+            btn.classList.remove('opacity-70', 'cursor-not-allowed');
         }
-        
-    } catch (error) {
-        // Network error
-        const errorEl = document.getElementById('contact-error');
-        errorEl.textContent = '❌ Gagal terhubung. Silakan coba lagi atau hubungi via WhatsApp.';
-        errorEl.classList.remove('hidden');
-        errorEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        
-        setTimeout(() => {
-            errorEl.classList.add('hidden');
-            errorEl.textContent = '❌ Gagal mengirim pesan. Silakan coba lagi atau hubungi via WhatsApp.';
-        }, 8000);
-        
-    } finally {
-        // Enable button
-        btn.disabled = false;
-        btn.textContent = originalText;
-        btn.classList.remove('opacity-70', 'cursor-not-allowed');
-    }
-});
+    });
+}
 </script>
