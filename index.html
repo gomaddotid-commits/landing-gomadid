@@ -105,32 +105,5 @@
     
     <!-- Custom JS -->
     <script src="js/main.js"></script>
-    
-    <!-- Init -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Load header & footer
-            fetch('components/header.html').then(r => r.text()).then(html => {
-                document.getElementById('header-container').innerHTML = html;
-            });
-            fetch('components/footer.html').then(r => r.text()).then(html => {
-                document.getElementById('footer-container').innerHTML = html;
-            });
-            
-            // Init theme
-            theme.init();
-            
-            // Init router
-            const hash = location.hash.slice(1) || '/';
-            router.load(hash);
-            
-            // WA tooltip
-            setTimeout(() => {
-                const tooltip = document.getElementById('wa-tooltip');
-                tooltip.style.opacity = '1';
-                setTimeout(() => { tooltip.style.opacity = '0'; }, 5000);
-            }, 3000);
-        });
-    </script>
 </body>
 </html>

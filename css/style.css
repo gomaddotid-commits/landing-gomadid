@@ -419,7 +419,7 @@ body {
 }
 
 [data-theme="dark"] .hero-description {
-    color: black;
+    color: rgba(255, 255, 255, 0.7);
 }
 
 @media (min-width: 768px) {

@@ -260,10 +260,10 @@
                 <p class="text-[10px] font-mono uppercase tracking-wider text-white/70 mb-2">Kode Referral Anda</p>
                 <p class="text-4xl font-mono font-bold tracking-widest mb-4">BUDI123</p>
                 <div class="flex gap-3 justify-center">
-                    <button class="bg-white text-[#C1121F] px-6 py-2.5 rounded-xl font-bold text-sm hover:bg-gray-100 transition">
+                    <button onclick="navigator.clipboard.writeText('BUDI123').then(()=>{this.textContent='✅ Tersalin!';setTimeout(()=>{this.textContent='📋 Copy Kode'},2000)})" class="bg-white text-[#C1121F] px-6 py-2.5 rounded-xl font-bold text-sm hover:bg-gray-100 transition">
                         📋 Copy Kode
                     </button>
-                    <button class="bg-green-500 text-white px-6 py-2.5 rounded-xl font-bold text-sm hover:bg-green-600 transition">
+                    <button onclick="window.open('https://wa.me/?text=Yuk+pakai+GoMad+untuk+booking+travel!+Kode+referral:+BUDI123','_blank')" class="bg-green-500 text-white px-6 py-2.5 rounded-xl font-bold text-sm hover:bg-green-600 transition">
                         💬 Share WhatsApp
                     </button>
                 </div>

@@ -30,16 +30,20 @@
             <!-- Stats -->
             <div class="flex flex-wrap gap-8 mt-16 pt-8 border-t border-white/10">
                 <div>
-                    <span class="text-3xl font-bold">50+</span>
+                    <span class="text-3xl font-bold" id="stat-agencies">50+</span>
                     <p class="text-white/40 text-xs mt-1">Agency</p>
                 </div>
                 <div>
-                    <span class="text-3xl font-bold">100+</span>
+                    <span class="text-3xl font-bold" id="stat-routes">100+</span>
                     <p class="text-white/40 text-xs mt-1">Rute</p>
                 </div>
                 <div>
-                    <span class="text-3xl font-bold">500+</span>
+                    <span class="text-3xl font-bold" id="stat-bookings">500+</span>
                     <p class="text-white/40 text-xs mt-1">Booking</p>
+                </div>
+                <div>
+                    <span class="text-3xl font-bold" id="stat-customers">200+</span>
+                    <p class="text-white/40 text-xs mt-1">Customer</p>
                 </div>
             </div>
         </div>
@@ -243,7 +247,39 @@
 </section>
 
 <!-- ═══════════════════════════════════ -->
-<!-- TESTIMONIALS (After Drop — rounded top) -->
+<!-- POPULAR ROUTES + TOP AGENCIES -->
+<!-- ═══════════════════════════════════ -->
+<section class="section section-bg">
+    <div class="container-landing">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Rute Populer -->
+            <div>
+                <div class="section-header text-left">
+                    <span class="label">Rute Populer</span>
+                    <h2>Tujuan Favorit</h2>
+                    <p>Rute paling diminati minggu ini.</p>
+                </div>
+                <div id="popular-routes-container" class="space-y-3">
+                    <div class="card p-4 text-center text-gray-400 text-sm">Memuat rute...</div>
+                </div>
+            </div>
+            <!-- Agency Terbaik -->
+            <div>
+                <div class="section-header text-left">
+                    <span class="label">Agency Terbaik</span>
+                    <h2>Mitra Terpercaya</h2>
+                    <p>Agency dengan rating tertinggi.</p>
+                </div>
+                <div id="top-agencies-container" class="grid grid-cols-2 gap-4">
+                    <div class="card p-4 text-center text-gray-400 text-sm">Memuat agency...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════ -->
+<!-- TESTIMONIALS -->
 <!-- ═══════════════════════════════════ -->
 <section class="section section-bg section-after-drop">
     <div class="container-landing">
@@ -252,32 +288,8 @@
             <h2>Apa Kata Mereka?</h2>
             <p>Pengalaman nyata dari pengguna GoMad.</p>
         </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            <div class="card fade-in-up">
-                <div class="flex items-center gap-1 text-yellow-400 mb-3">
-                    ⭐⭐⭐⭐⭐
-                </div>
-                <p class="text-sm text-gray-500 dark:text-gray-400 font-light mb-3 italic">"Booking travel jadi jauh lebih mudah. Dijemput di rumah, tinggal duduk santai sampai tujuan."</p>
-                <p class="font-semibold text-sm">Budi Santoso</p>
-                <p class="text-xs text-gray-400 font-light">Customer</p>
-            </div>
-            <div class="card fade-in-up">
-                <div class="flex items-center gap-1 text-yellow-400 mb-3">
-                    ⭐⭐⭐⭐⭐
-                </div>
-                <p class="text-sm text-gray-500 dark:text-gray-400 font-light mb-3 italic">"Fitur transfer penumpang sangat membantu saat mobil sepi. Tidak rugi operasional."</p>
-                <p class="font-semibold text-sm">H. Ahmad Jaya</p>
-                <p class="text-xs text-gray-400 font-light">Agency Owner</p>
-            </div>
-            <div class="card fade-in-up">
-                <div class="flex items-center gap-1 text-yellow-400 mb-3">
-                    ⭐⭐⭐⭐⭐
-                </div>
-                <p class="text-sm text-gray-500 dark:text-gray-400 font-light mb-3 italic">"Jadi warung GoMad itu mudah. Modal dengkul, cukup terima uang cash. Pencairan hasil transaksi dilakukan sesuai jadwal settlement mingguan."</p>
-                <p class="font-semibold text-sm">Pak Rahmat</p>
-                <p class="text-xs text-gray-400 font-light">Warung Owner</p>
-            </div>
+        <div id="testimonials-container" class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            <div class="card p-5 text-center text-gray-400 text-sm">Memuat testimoni...</div>
         </div>
     </div>
 </section>
