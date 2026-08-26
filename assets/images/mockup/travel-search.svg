@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="960" viewBox="0 0 480 960" font-family="'Inter',system-ui,sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F5F5F5"/>
+      <stop offset="1" stop-color="#EDEDEF"/>
+    </linearGradient>
+  </defs>
+  <!-- phone body -->
+  <rect x="20" y="10" width="440" height="940" rx="48" fill="#0F0F10"/>
+  <rect x="34" y="24" width="412" height="912" rx="38" fill="url(#bg)"/>
+  <!-- status bar -->
+  <text x="52" y="60" font-size="20" fill="#111" font-weight="700">9:41</text>
+  <circle cx="430" cy="56" r="6" fill="#111" opacity="0.7"/>
+  <!-- header -->
+  <rect x="52" y="92" width="72" height="72" rx="20" fill="#111"/>
+  <text x="88" y="134" font-size="26" fill="#fff" font-weight="800">G</text>
+  <rect x="140" y="104" width="110" height="12" rx="6" fill="#111"/>
+  <rect x="140" y="126" width="150" height="10" rx="5" fill="#111" opacity="0.35"/>
+  <rect x="330" y="100" width="66" height="34" rx="17" fill="#C1121F"/>
+  <!-- search card -->
+  <rect x="52" y="188" width="376" height="130" rx="24" fill="#fff"/>
+  <rect x="76" y="212" width="60" height="10" rx="5" fill="#C1121F"/>
+  <rect x="76" y="236" width="220" height="16" rx="8" fill="#111"/>
+  <rect x="76" y="264" width="180" height="10" rx="5" fill="#111" opacity="0.3"/>
+  <rect x="76" y="286" width="110" height="18" rx="9" fill="#C1121F" opacity="0.12"/>
+  <circle cx="398" cy="253" r="24" fill="#C1121F"/>
+  <!-- travel banner -->
+  <rect x="52" y="338" width="376" height="150" rx="24" fill="#111"/>
+  <rect x="76" y="366" width="120" height="10" rx="5" fill="#fff" opacity="0.6"/>
+  <rect x="76" y="392" width="240" height="18" rx="9" fill="#fff"/>
+  <rect x="76" y="424" width="200" height="10" rx="5" fill="#fff" opacity="0.35"/>
+  <rect x="76" y="456" width="100" height="18" rx="9" fill="#C1121F"/>
+  <text x="376" y="430" font-size="56" fill="#fff" opacity="0.9">🚐</text>
+  <!-- rental banner -->
+  <rect x="52" y="508" width="376" height="150" rx="24" fill="#fff"/>
+  <rect x="76" y="536" width="120" height="10" rx="5" fill="#111" opacity="0.35"/>
+  <rect x="76" y="562" width="240" height="18" rx="9" fill="#111"/>
+  <rect x="76" y="594" width="200" height="10" rx="5" fill="#111" opacity="0.25"/>
+  <rect x="76" y="626" width="100" height="18" rx="9" fill="#111"/>
+  <text x="376" y="600" font-size="56" fill="#C1121F" opacity="0.9">🚗</text>
+  <!-- quick access -->
+  <rect x="52" y="678" width="376" height="150" rx="24" fill="#fff"/>
+  <rect x="76" y="702" width="90" height="10" rx="5" fill="#111" opacity="0.5"/>
+  <g>
+    <rect x="76" y="726" width="86" height="74" rx="16" fill="#C1121F" opacity="0.08"/>
+    <rect x="116" y="742" width="8" height="8" rx="2" fill="#C1121F"/>
+    <rect x="76" y="812" width="86" height="10" rx="5" fill="#111" opacity="0.4"/>
+    <rect x="174" y="726" width="86" height="74" rx="16" fill="#111"/>
+    <rect x="174" y="812" width="86" height="10" rx="5" fill="#111" opacity="0.4"/>
+    <rect x="272" y="726" width="86" height="74" rx="16" fill="#C1121F" opacity="0.08"/>
+    <rect x="272" y="812" width="86" height="10" rx="5" fill="#111" opacity="0.4"/>
+  </g>
+  <!-- bottom nav -->
+  <rect x="52" y="856" width="376" height="64" rx="20" fill="#fff"/>
+  <circle cx="112" cy="888" r="18" fill="#C1121F" opacity="0.12"/>
+  <circle cx="200" cy="888" r="18" fill="#111" opacity="0.06"/>
+  <circle cx="288" cy="888" r="18" fill="#111" opacity="0.06"/>
+  <circle cx="376" cy="888" r="18" fill="#111" opacity="0.06"/>
+  <text x="112" y="894" font-size="18" fill="#C1121F" text-anchor="middle">🏠</text>
+  <text x="200" y="894" font-size="18" fill="#111" text-anchor="middle">🚐</text>
+  <text x="288" y="894" font-size="18" fill="#111" text-anchor="middle">🚗</text>
+  <text x="376" y="894" font-size="18" fill="#111" text-anchor="middle">👤</text>
+  <text x="240" y="30" font-size="18" fill="#fff" text-anchor="middle" letter-spacing="2" opacity="0.85">PLACEHOLDER MOCKUP</text>
+</svg>

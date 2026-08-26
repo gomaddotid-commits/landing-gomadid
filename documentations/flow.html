@@ -1,377 +1,111 @@
-<!-- ═══════════════════════════════════ -->
-<!-- PAGE HEADER -->
-<!-- ═══════════════════════════════════ -->
-<section class="page-header pt-36">
-    <div class="container-landing">
-        <div class="flex items-center justify-center gap-3 mb-6">
-            <div class="h-px w-8 bg-[#C1121F]/40"></div>
-            <span class="label">Diagram Alur</span>
-            <div class="h-px w-8 bg-[#C1121F]/40"></div>
-        </div>
-        <h1>Alur Bisnis GoMad</h1>
-        <p>Visualisasi lengkap alur booking, pembayaran, transfer penumpang, rental, dan settlement.</p>
-    </div>
-</section>
+<div class="container" style="padding-top:calc(var(--nav-h) + 44px);padding-bottom:80px">
+    <div class="doc-wrap">
+        <aside class="doc-side reveal">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
+                <div class="b-icon" style="margin:0">📊</div>
+                <div style="font-weight:800;font-size:1.05rem">Alur Transaksi</div>
+            </div>
+            <nav class="doc-nav">
+                <a href="#travel" class="active" onclick="scrollToSection(event,'travel')">🚐 Alur Booking Travel</a>
+                <a href="#rental" onclick="scrollToSection(event,'rental')">🚗 Alur Rental</a>
+                <a href="#pembayaran" onclick="scrollToSection(event,'pembayaran')">💳 Alur Pembayaran</a>
+                <a href="#transfer" onclick="scrollToSection(event,'transfer')">🔄 Transfer Penumpang</a>
+                <a href="#proposal" onclick="scrollToSection(event,'proposal')">🕓 Pengajuan Jadwal Supir</a>
+            </nav>
+            <div style="margin-top:20px;padding-top:18px;border-top:1px solid var(--line)">
+                <a href="#/docs" style="display:inline-flex;align-items:center;gap:6px;font-size:.9rem;color:var(--ink-soft)">← Kembali ke Dokumentasi</a>
+            </div>
+        </aside>
 
-<!-- ═══════════════════════════════════ -->
-<!-- FLOW DIAGRAMS -->
-<!-- ═══════════════════════════════════ -->
-<section class="section">
-    <div class="container-landing">
-        
-        <!-- Flow 1: Booking & Payment -->
-        <div class="card mb-8 fade-in-up">
-            <div class="flex items-center gap-3 mb-6">
-                <div class="h-px w-8 bg-[#C1121F]/40"></div>
-                <h2 class="text-xl font-bold">🔄 Alur Booking & Pembayaran Travel</h2>
-            </div>
-            <p class="text-gray-500 dark:text-gray-400 font-light text-sm mb-6">
-                Dari customer mencari jadwal sampai pendapatan agency siap diproses untuk settlement.
-            </p>
-            <div class="mermaid">
-flowchart TB
-    A[🔍 Customer Cari Jadwal] --> B[📅 Pilih Jadwal]
-    B --> C[✏️ Isi Data Penumpang & Alamat]
-    C --> D{🎫 Booking Dibuat}
-    D --> E[💳 Pilih Metode Pembayaran]
-    
-    E -->|Online| F[Midtrans Snap]
-    E -->|Warung| G[🏪 Generate Kode Bayar]
-    E -->|COD| H[🚗 Booking Status: Confirmed]
-    
-    F --> I[Customer Bayar]
-    I --> J[Midtrans Callback]
-    J --> K[Payment Status: PAID]
-    
-    G --> L[Customer ke Warung]
-    L --> M[Warung Input Kode + PIN]
-    M --> N[Payment Status: PAID]
-    
-    H --> O[Sopir Jemput]
-    O --> P[Sopir Antar]
-    P --> Q[Sopir Konfirmasi COD]
-    Q --> R[Payment Status: PAID]
-    
-    K --> S[Booking Status: PAID]
-    N --> S
-    R --> S
-    
-    S --> T[🎫 E-Ticket Tersedia]
-    T --> U[Agency Mulai Jadwal]
-    U --> V[Sopir Jemput & Antar]
-    V --> W[Booking Completed]
-    W --> X[💰 Pendapatan Agency Tercatat]
-    
-    style A fill:#C1121F,color:#fff
-    style X fill:#16a34a,color:#fff
-    style S fill:#3b82f6,color:#fff
-            </div>
-        </div>
-        
-        <!-- Flow 2: Payment Methods Detail -->
-        <div class="card mb-8 fade-in-up">
-            <div class="flex items-center gap-3 mb-6">
-                <div class="h-px w-8 bg-[#C1121F]/40"></div>
-                <h2 class="text-xl font-bold">💳 Detail Metode Pembayaran</h2>
-            </div>
-            <p class="text-gray-500 dark:text-gray-400 font-light text-sm mb-6">
-                Tiga jalur pembayaran yang bisa dipilih customer.
-            </p>
-            <div class="mermaid">
+        <div>
+            <div class="doc-section" id="travel">
+                <h2>🚐 Alur Booking Travel</h2>
+                <p>Perjalanan booking travel dari pencarian sampai keberangkatan.</p>
+                <div class="b-cell flat">
+                    <div class="mermaid">
 flowchart LR
-    subgraph Online
-        A1[Customer] -->|Klik Bayar| A2[Midtrans Snap]
-        A2 --> A3[Pilih: Transfer/VA/QRIS/EWallet]
-        A3 --> A4[Bayar]
-        A4 --> A5[Callback ke GoMad]
-        A5 --> A6[✅ PAID]
-    end
-    
-    subgraph Warung
-        B1[Customer] -->|Pilih Warung| B2[Dapat Kode Bayar]
-        B2 --> B3[Ke Warung Terdekat]
-        B3 --> B4[Tunjukkan Kode]
-        B4 --> B5[Warung Input Kode + PIN]
-        B5 --> B6[✅ PAID]
-    end
-    
-    subgraph COD
-        C1[Customer] -->|Pilih COD| C2[Booking Confirmed]
-        C2 --> C3[Sopir Jemput]
-        C3 --> C4[Bayar Cash ke Sopir]
-        C4 --> C5[Sopir Konfirmasi]
-        C5 --> C6[✅ PAID]
-    end
-    
-    style A6 fill:#16a34a,color:#fff
-    style B6 fill:#16a34a,color:#fff
-    style C6 fill:#16a34a,color:#fff
+  A[Cari Jadwal] --> B[Pilih Rute &amp; Tanggal]
+  B --> C[Isi Data &amp; Alamat Jemput]
+  C --> D[Pilih Kursi]
+  D --> E[Bayar]
+  E --> F[E-Ticket Aktif]
+  F --> G[Sopir Jemput di Rumah]
+  G --> H[Sampai Tujuan]
+                    </div>
+                </div>
             </div>
-        </div>
-        
-        <!-- Flow 3: Transfer Penumpang -->
-        <div class="card mb-8 fade-in-up">
-            <div class="flex items-center gap-3 mb-6">
-                <div class="h-px w-8 bg-[#C1121F]/40"></div>
-                <h2 class="text-xl font-bold">🔄 Alur Transfer Penumpang</h2>
-            </div>
-            <p class="text-gray-500 dark:text-gray-400 font-light text-sm mb-6">
-                Fitur untuk memindahkan penumpang dari jadwal sepi ke jadwal lain.
-            </p>
-            <div class="mermaid">
-flowchart TB
-    A[📅 Jadwal A Sepi] --> B{Agency Cari Jadwal Tujuan}
-    B --> C[Pilih Penumpang yang Akan Ditransfer]
-    C --> D[Kirim Permintaan Transfer]
-    
-    D -->|Internal Agency| E[✅ Otomatis Disetujui]
-    D -->|External Agency| F[Agency Penerima Review]
-    
-    F -->|Setuju| G[✅ Transfer Disetujui]
-    F -->|Tolak| H[❌ Transfer Ditolak]
-    
-    E --> I[Penumpang Pindah Jadwal]
-    G --> I
-    
-    I --> J[💰 Penyesuaian Pendapatan]
-    J --> K[📢 Notifikasi ke Customer]
-    K --> L[🎉 Selesai]
-    
-    style A fill:#f59e0b,color:#111
-    style L fill:#16a34a,color:#fff
-    style H fill:#ef4444,color:#fff
-            </div>
-        </div>
-        
-        <!-- Flow 4: Rental -->
-        <div class="card mb-8 fade-in-up">
-            <div class="flex items-center gap-3 mb-6">
-                <div class="h-px w-8 bg-[#C1121F]/40"></div>
-                <h2 class="text-xl font-bold">🚗 Alur Rental Mobil</h2>
-            </div>
-            <p class="text-gray-500 dark:text-gray-400 font-light text-sm mb-6">
-                Dua tipe rental: Lepas Kunci (Self Drive) dan Dengan Supir.
-            </p>
-            <div class="mermaid">
-flowchart TB
-    subgraph Lepas Kunci
-        A1[📄 Upload KTP & SIM] --> A2[⏳ Admin Verifikasi]
-        A2 --> A3[🔍 Cari Mobil]
-        A3 --> A4[📅 Booking & 💳 Bayar]
-        A4 --> A5[📍 Ambil Mobil di Agency]
-        A5 --> A6[🔄 Kembalikan Mobil]
-    end
-    
-    subgraph Dengan Supir
-        B1[🔍 Cari Mobil + Supir] --> B2[📅 Booking & 💳 Bayar]
-        B2 --> B3[👨‍✈️ Agency Tugaskan Supir]
-        B3 --> B4[📍 Supir Jemput Customer]
-        B4 --> B5[🚗 Supir Antar]
-        B5 --> B6[🔄 Mobil Dikembalikan]
-    end
-    
-    A6 --> C[✅ Rental Selesai]
-    B6 --> C
-    C --> D[💰 Pendapatan Agency Tercatat]
-    
-    style A1 fill:#3b82f6,color:#fff
-    style D fill:#16a34a,color:#fff
-            </div>
-        </div>
-        
-        <!-- Flow 5: Settlement Warung -->
-        <div class="card mb-8 fade-in-up">
-            <div class="flex items-center gap-3 mb-6">
-                <div class="h-px w-8 bg-[#C1121F]/40"></div>
-                <h2 class="text-xl font-bold">📋 Alur Settlement Warung</h2>
-            </div>
-            <p class="text-gray-500 dark:text-gray-400 font-light text-sm mb-6">
-                Proses settlement mingguan untuk Warung GoMad.
-            </p>
-            <div class="mermaid">
+
+            <div class="doc-section" id="rental">
+                <h2>🚗 Alur Rental (Lepas Kunci)</h2>
+                <p>Verifikasi dokumen → pilih mobil → bayar → ambil mobil.</p>
+                <div class="b-cell flat">
+                    <div class="mermaid">
 flowchart LR
-    A[📅 Senin 00:01] --> B[🤖 Sistem Generate Settlement]
-    B --> C[🏪 Warung Lihat Tagihan]
-    C --> D{Warung Bayar?}
-    
-    D -->|Ya| E[💳 Midtrans Payment]
-    D -->|Tidak| F[⚠️ Status: Overdue]
-    
-    E --> G[✅ Admin Verifikasi]
-    G --> H[🎉 Settlement Lunas]
-    
-    F --> I[⏰ 7 Hari]
-    I --> J[🚫 Penalti?]
-    
-    style A fill:#8b5cf6,color:#fff
-    style H fill:#16a34a,color:#fff
-    style J fill:#ef4444,color:#fff
+  A[Unggah KTP, SIM &amp; Selfie] --> B[Admin Verifikasi Dokumen]
+  B --> C[Dokumen Terverifikasi]
+  C --> D[Pilih Mobil Rental]
+  D --> E[Pilih Durasi &amp; Mode]
+  E --> F[Bayar Deposit / OTS]
+  F --> G[Ambil Mobil — Lepas Kunci]
+                    </div>
+                </div>
+                <div class="callout info">💡 Berkas penyewa diserahkan ke agency otomatis saat masa sewa dimulai.</div>
             </div>
-        </div>
-        
-        <!-- Flow 6: Wallet & Withdrawal -->
-        <div class="card mb-8 fade-in-up">
-            <div class="flex items-center gap-3 mb-6">
-                <div class="h-px w-8 bg-[#C1121F]/40"></div>
-                <h2 class="text-xl font-bold">💰 Alur Settlement & Pencairan Pendapatan Agency</h2>
-            </div>
-            <p class="text-gray-500 dark:text-gray-400 font-light text-sm mb-6">
-                Bagaimana uang mengalir dari customer ke rekening Agency.
-            </p>
-            <div class="mermaid">
-flowchart TB
-    A[💳 Customer Bayar] --> B[Payment PAID]
-    B --> C[💰 Pendapatan Dalam Proses]
-    C --> D[🚐 Perjalanan Selesai]
-    D --> E[✅ Dana Siap Dicairkan]
-    
-    E --> F{Agency Mau Tarik?}
-    F -->|Ya| G[📝 Ajukan Penarikan]
-    F -->|Tidak| H[💵 Dana Menunggu Pencairan]
-    
-    G --> I{Jumlah?}
-    I -->|&lt; 5 Juta| J[✅ Auto-Approve]
-    I -->|&ge; 5 Juta| K[👤 Admin Review]
-    
-    K -->|Setuju| L[✅ Approved]
-    K -->|Tolak| M[❌ Rejected + Kembali ke Dana Siap Dicairkan]
-    
-    J --> N[🏦 Proses Disbursement]
-    L --> N
-    N --> O[💵 Dana Masuk Rekening Agency]
-    
-    style A fill:#C1121F,color:#fff
-    style O fill:#16a34a,color:#fff
-    style M fill:#ef4444,color:#fff
-            </div>
-        </div>
-        
-        <!-- Flow 7: Full Ecosystem -->
-        <div class="card fade-in-up">
-            <div class="flex items-center gap-3 mb-6">
-                <div class="h-px w-8 bg-[#C1121F]/40"></div>
-                <h2 class="text-xl font-bold">🌐 Ekosistem GoMad</h2>
-            </div>
-            <p class="text-gray-500 dark:text-gray-400 font-light text-sm mb-6">
-                Gambaran besar hubungan antar aktor dalam platform GoMad.
-            </p>
-            <div class="mermaid">
-flowchart TB
-    subgraph Customer
-        C1[👤 Cari & Booking]
-        C2[💳 Bayar]
-        C3[🎫 E-Ticket]
-        C4[⭐ Review]
-    end
-    
-    subgraph Agency
-        A1[🏢 Setup Profil]
-        A2[📅 Buat Jadwal]
-        A3[👨‍✈️ Kelola Driver]
-        A4[💵 Pendapatan & Pencairan]
-        A5[🚗 Setup Rental]
-    end
-    
-    subgraph Driver
-        D1[📅 Lihat Jadwal]
-        D2[✅ Jemput]
-        D3[🚗 Antar]
-        D4[💰 Konfirmasi COD]
-    end
-    
-    subgraph Warung
-        W1[🏪 Setup Profil]
-        W2[💳 Konfirmasi Bayar]
-        W3[📋 Settlement]
-    end
-    
-    subgraph Admin
-        AD1[✅ Verifikasi Agency]
-        AD2[🗺️ Kelola Rute]
-        AD3[🎫 Kelola Promo]
-        AD4[💸 Approval Withdrawal]
-    end
-    
-    subgraph Platform
-        P1[💳 Midtrans Gateway]
-        P2[📢 Notifikasi WA/Push]
-        P3[☁️ Cloudinary Storage]
-        P4[🗺️ Google Maps]
-    end
-    
-    C2 --> P1
-    W2 --> P1
-    A4 --> P1
-    
-    C1 --> A2
-    A2 --> D1
-    D4 --> A4
-    
-    A1 --> AD1
-    A3 --> D1
-    
-    W1 --> AD1
-    W3 --> AD1
-    
-    P2 --> C3
-    P2 --> D1
-    P2 --> W2
-    
-    style Customer fill:#3b82f6,color:#fff
-    style Agency fill:#f59e0b,color:#111
-    style Driver fill:#8b5cf6,color:#fff
-    style Warung fill:#10b981,color:#fff
-    style Admin fill:#ef4444,color:#fff
-    style Platform fill:#6b7280,color:#fff
-            </div>
-        </div>
-        
-    </div>
-</section>
 
-<!-- ═══════════════════════════════════ -->
-<!-- LEGEND -->
-<!-- ═══════════════════════════════════ -->
-<section class="section section-bg">
-    <div class="container-landing">
-        <div class="section-header">
-            <span class="label">Legenda</span>
-            <h2>Warna & Arti</h2>
-        </div>
-        
-        <div class="grid grid-cols-2 md:grid-cols-5 gap-4 max-w-4xl mx-auto text-center">
-            <div class="card">
-                <div class="w-8 h-8 bg-[#C1121F] rounded-lg mx-auto mb-2"></div>
-                <p class="text-xs font-medium">Start / Trigger</p>
+            <div class="doc-section" id="pembayaran">
+                <h2>💳 Alur Pembayaran</h2>
+                <p>Empat jalur pembayaran yang didukung platform.</p>
+                <div class="b-cell flat">
+                    <div class="mermaid">
+flowchart TB
+  A[Pilih Metode Bayar] --> B[Online — Midtrans]
+  A --> C[Warung GoMad]
+  A --> D[COD — Bayar ke Sopir]
+  A --> E[OTS — Bayar di Tempat]
+  B --> F[Bayar via VA / QRIS / e-wallet]
+  C --> G[Kode Bayar → Konfirmasi PIN Warung]
+  D --> H[Bayar Tunai Saat Penjemputan]
+  E --> I[Bayar Tunai Saat Ambil Mobil]
+  F --> J[Tiket / Rental Aktif]
+  G --> J
+  H --> J
+  I --> J
+                    </div>
+                </div>
             </div>
-            <div class="card">
-                <div class="w-8 h-8 bg-[#16a34a] rounded-lg mx-auto mb-2"></div>
-                <p class="text-xs font-medium">Success / End</p>
+
+            <div class="doc-section" id="transfer">
+                <h2>🔄 Transfer Penumpang</h2>
+                <p>Penumpang dialihkan antar jadwal secara gratis.</p>
+                <div class="b-cell flat">
+                    <div class="mermaid">
+flowchart LR
+  A[Supir Pilih Jadwal Tujuan] --> B[Pilih Booking Penumpang]
+  B --> C{Tujuan?}
+  C -->|Internal / Agency Sama| D[Otomatis Disetujui]
+  C -->|Eksternal / Agency Beda| E[Menunggu Persetujuan Agency]
+  D --> F[Penumpang Pindah Jadwal]
+  E --> F
+                    </div>
+                </div>
             </div>
-            <div class="card">
-                <div class="w-8 h-8 bg-[#3b82f6] rounded-lg mx-auto mb-2"></div>
-                <p class="text-xs font-medium">Payment / Action</p>
+
+            <div class="doc-section" id="proposal">
+                <h2>🕓 Pengajuan Jadwal Supir</h2>
+                <p>Driver mengusulkan jadwal, agency menyetujui, jadwal tampil ke customer.</p>
+                <div class="b-cell flat">
+                    <div class="mermaid">
+flowchart LR
+  A[Driver Buat Pengajuan] --> B[Pilih Rute, Stop &amp; Harga]
+  B --> C[Cek Ketersediaan Kendaraan]
+  C --> D[Kirim ke Agency]
+  D --> E{Agency Menyetujui?}
+  E -->|Ya + Pilih Metode Bayar| F[Jadwal Aktif &amp; Tampil]
+  E -->|Tidak + Alasan| G[Ditolak]
+  F --> H[Customer Bisa Booking]
+                    </div>
+                </div>
             </div>
-            <div class="card">
-                <div class="w-8 h-8 bg-[#f59e0b] rounded-lg mx-auto mb-2"></div>
-                <p class="text-xs font-medium">Warning / Pending</p>
-            </div>
-            <div class="card">
-                <div class="w-8 h-8 bg-[#ef4444] rounded-lg mx-auto mb-2"></div>
-                <p class="text-xs font-medium">Rejected / Error</p>
-            </div>
-        </div>
-        
-        <!-- Back to Docs -->
-        <div class="text-center mt-12">
-            <a href="#/docs" class="btn-outline px-8 py-3 rounded-xl">
-                ← Kembali ke Dokumentasi
-            </a>
         </div>
     </div>
-</section>
-
-<script>
-// Mermaid already initialized by main.js router
-// Re-render on theme change handled by theme.updateMermaid()
-</script>
+</div>

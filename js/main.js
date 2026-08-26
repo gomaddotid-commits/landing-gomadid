@@ -1,423 +1,353 @@
-/* ═══════════════════════════════════════
-   GOMAD LANDING PAGE - MAIN JAVASCRIPT
-   ═══════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════════
+   GOMAD LANDING — MAIN JS v2
+   SPA router · Theme · Micro-interactions & scroll animations
+   ═══════════════════════════════════════════════════════════ */
 
-// ==================== THEME MANAGER ====================
+/* ==================== THEME ==================== */
 const theme = {
-    init() {
-        const saved = localStorage.getItem('gomad-theme') || 'light';
-        // Cek preferensi sistem
-        if (!localStorage.getItem('gomad-theme')) {
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            this.apply(prefersDark ? 'dark' : 'light');
-            return;
-        }
-        this.apply(saved);
-    },
-    
-    toggle() {
-        const current = document.documentElement.getAttribute('data-theme');
-        const next = current === 'dark' ? 'light' : 'dark';
-        this.apply(next);
-        localStorage.setItem('gomad-theme', next);
-        
-        // Update mobile theme button text
-        const mobileThemeIcon = document.getElementById('mobile-theme-icon');
-        const mobileThemeText = document.getElementById('mobile-theme-text');
-        if (mobileThemeIcon && mobileThemeText) {
-            if (next === 'dark') {
-                mobileThemeIcon.textContent = '☀️';
-                mobileThemeText.textContent = 'Light Mode';
-            } else {
-                mobileThemeIcon.textContent = '🌙';
-                mobileThemeText.textContent = 'Dark Mode';
-            }
-        }
-    },
-    
-    apply(mode) {
-        document.documentElement.setAttribute('data-theme', mode);
-        
-        // Update header logo
-        const logo = document.getElementById('header-logo');
-        if (logo) {
-            logo.src = mode === 'dark' 
-                ? '/assets/images/logo-putih.png' 
-                : '/assets/images/logo-merah.png';
-        }
-        
-        // Update mobile logo
-        const mobileLogo = document.getElementById('mobile-logo');
-        if (mobileLogo) {
-            mobileLogo.src = mode === 'dark' 
-                ? '/assets/images/logo-putih.png' 
-                : '/assets/images/logo-merah.png';
-        }
-        
-        // Update mermaid theme if loaded
-        if (window.mermaid) {
-            this.updateMermaid(mode);
-        }
-    },
-    
-    updateMermaid(mode) {
-        const mermaidElements = document.querySelectorAll('.mermaid');
-        if (mermaidElements.length > 0) {
-            mermaid.initialize({
-                startOnLoad: true,
-                theme: mode === 'dark' ? 'dark' : 'default',
-                securityLevel: 'loose',
-            });
-            // Re-render
-            mermaidElements.forEach(el => {
-                if (el.getAttribute('data-processed')) {
-                    el.removeAttribute('data-processed');
-                }
-            });
-            try {
-                mermaid.run();
-            } catch (e) {
-                console.log('Mermaid re-render skipped');
-            }
-        }
+  init() {
+    const saved = localStorage.getItem('gomad-theme');
+    if (!saved) {
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      this.apply(prefersDark ? 'dark' : 'light');
+      return;
     }
-};
-
-// ==================== SPA ROUTER ====================
-const router = {
-    routes: {
-        '/':              'pages/home.html',
-        '/platform':      'pages/platform.html',
-        '/agency':        'pages/agency.html',
-        '/customer':      'pages/customer.html',
-        '/contact':       'pages/contact.html',
-        '/docs':          'documentations/index.html',
-        '/docs/customer': 'documentations/customer.html',
-        '/docs/agency':   'documentations/agency.html',
-        '/docs/driver':   'documentations/driver.html',
-        '/docs/warung':   'documentations/warung.html',
-        '/docs/flow':     'documentations/flow.html',
-    },
-    
-    async load(path) {
-        const mainContent = document.getElementById('main-content');
-        const url = this.routes[path];
-        
-        // ⬇️ FIX: Kalau route tidak ditemukan, cek apakah ini anchor link internal
-        if (!url) {
-            // Coba cari elemen dengan ID tersebut di halaman
-            const element = document.getElementById(path);
-            if (element) {
-                // Ini anchor link di halaman yang sama — scroll ke elemen
-                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                
-                // Update sidebar active link jika ada
-                document.querySelectorAll('.doc-sidebar-link').forEach(link => {
-                    link.classList.remove('active');
-                    const href = link.getAttribute('onclick') || '';
-                    if (href.includes(`'${path}'`)) {
-                        link.classList.add('active');
-                    }
-                });
-                return;
-            }
-            
-            // Kalau benar-benar tidak ada, tampilkan 404
-            mainContent.innerHTML = `
-                <div class="text-center py-20">
-                    <div class="text-6xl font-bold text-[#C1121F] mb-4">404</div>
-                    <h2 class="text-xl font-bold mb-2">Halaman Tidak Ditemukan</h2>
-                    <p class="text-gray-500 mb-6 font-light">Halaman yang Anda cari tidak tersedia.</p>
-                    <a href="#/" class="btn-primary inline-flex">← Kembali ke Beranda</a>
-                </div>
-            `;
-            return;
-        }
-        
-        // Scroll to top
-        window.scrollTo({ top: 0, behavior: 'instant' });
-        
-        // Show loading
-        mainContent.innerHTML = `
-            <div class="flex items-center justify-center h-64">
-                <div class="text-center">
-                    <div class="animate-spin w-10 h-10 border-4 border-[#C1121F] border-t-transparent rounded-full mx-auto mb-4"></div>
-                    <p class="text-gray-500 dark:text-gray-400 font-light">Memuat...</p>
-                </div>
-            </div>
-        `;
-        
-        try {
-            const response = await fetch(url);
-            if (!response.ok) throw new Error('Page not found');
-            const html = await response.text();
-            mainContent.innerHTML = html;
-            
-            // Update active nav link
-            this.updateActiveNav(path);
-            
-            // Re-init page scripts
-            this.initPageScripts();
-            
-            // Scroll animations
-            this.initScrollAnimations();
-            
-        } catch (error) {
-            mainContent.innerHTML = `
-                <div class="text-center py-20">
-                    <div class="text-6xl font-bold text-[#C1121F] mb-4">404</div>
-                    <h2 class="text-xl font-bold mb-2">Halaman Tidak Ditemukan</h2>
-                    <p class="text-gray-500 mb-6 font-light">${error.message}</p>
-                    <a href="#/" class="btn-primary inline-flex">← Kembali ke Beranda</a>
-                </div>
-            `;
-        }
-    },
-    
-    updateActiveNav(path) {
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.classList.remove('active');
-            const href = link.getAttribute('href');
-            if (href === `#${path}` || (path === '/' && href === '#/')) {
-                link.classList.add('active');
-            }
-        });
-    },
-    
-    initPageScripts() {
-        // Re-init Mermaid jika ada
-        if (window.mermaid) {
-            const mermaidElements = document.querySelectorAll('.mermaid');
-            if (mermaidElements.length > 0) {
-                const mode = document.documentElement.getAttribute('data-theme') || 'light';
-                mermaid.initialize({
-                    startOnLoad: true,
-                    theme: mode === 'dark' ? 'dark' : 'default',
-                    securityLevel: 'loose',
-                });
-                try {
-                    mermaid.run();
-                } catch (e) {
-                    console.log('Mermaid init skipped');
-                }
-            }
-        }
-        
-        // Sync real data from backend
-        this.syncLandingData();
-    },
-    
-    async syncLandingData() {
-        // Auto-detect API URL based on environment
-        const host = location.hostname;
-        const apiBase = host.includes('localhost') || host.includes('127.0.0.1')
-            ? 'http://localhost:8000/api/v1/landing'
-            : 'https://web.gomad.id/api/v1/landing';
-        try {
-            const res = await fetch(`${apiBase}/all`);
-            if (!res.ok) return;
-            const json = await res.json();
-            if (!json.success || !json.data) return;
-            const d = json.data;
-            
-            if (d.stats) {
-                this.updateStat('stat-agencies', d.stats.total_agencies);
-                this.updateStat('stat-routes', d.stats.total_routes);
-                this.updateStat('stat-bookings', d.stats.total_bookings);
-                this.updateStat('stat-warungs', d.stats.total_warungs);
-                this.updateStat('stat-customers', d.stats.total_customers);
-                this.updateStat('stat-rental', d.stats.total_rental_cars);
-            }
-            if (d.popular_routes) this.renderPopularRoutes(d.popular_routes);
-            if (d.top_agencies) this.renderTopAgencies(d.top_agencies);
-            if (d.testimonials) this.renderTestimonials(d.testimonials);
-        } catch (e) {
-            console.log('Landing data sync skipped (backend offline)');
-        }
-    },
-    
-    updateStat(id, val) {
-        const el = document.getElementById(id);
-        if (el && val != null) el.textContent = val + '+';
-    },
-    
-    renderPopularRoutes(routes) {
-        const c = document.getElementById('popular-routes-container');
-        if (!c) return;
-        const fmt = new Intl.NumberFormat('id-ID');
-        c.innerHTML = routes.map(r => `
-            <div class="card p-4 flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-[#C1121F]/10 rounded-xl flex items-center justify-center text-lg">📍</div>
-                    <div><p class="font-semibold text-sm">${r.origin_city} → ${r.destination_city}</p>
-                    <p class="text-xs text-gray-400">${r.schedules_count} jadwal</p></div>
-                </div>
-                <p class="font-bold text-[#C1121F] text-sm">Rp ${fmt.format(r.min_price||0)}</p>
-            </div>`).join('');
-    },
-    
-    renderTopAgencies(agencies) {
-        const c = document.getElementById('top-agencies-container');
-        if (!c) return;
-        c.innerHTML = agencies.map(a => `
-            <div class="card p-4 text-center">
-                <div class="w-16 h-16 bg-[#C1121F]/10 rounded-2xl flex items-center justify-center mx-auto mb-3 text-2xl font-bold text-[#C1121F]">${(a.agency_name||'A')[0]}</div>
-                <p class="font-semibold text-sm">${a.agency_name}</p>
-                <div class="flex items-center justify-center gap-1 mt-1">
-                    <span class="text-yellow-500 text-xs">⭐</span><span class="text-xs font-bold">${a.rating||'0.0'}</span>
-                    <span class="text-xs text-gray-400">(${a.total_bookings||0})</span>
-                </div>
-            </div>`).join('');
-    },
-    
-    renderTestimonials(testimonials) {
-        const c = document.getElementById('testimonials-container');
-        if (!c) return;
-        const stars = r => '⭐'.repeat(Math.round(r));
-        c.innerHTML = testimonials.map(t => `
-            <div class="card p-5">
-                <div class="flex items-center gap-3 mb-3">
-                    <div class="w-10 h-10 bg-[#C1121F]/10 rounded-full flex items-center justify-center font-bold text-[#C1121F]">${(t.customer_name||'A')[0]}</div>
-                    <div><p class="font-semibold text-sm">${t.customer_name}</p>
-                    <p class="text-xs text-gray-400">${t.agency_name} · ${t.created_at}</p></div>
-                </div>
-                <p class="text-xs mb-2">${stars(t.rating)}</p>
-                <p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">"${t.review}"</p>
-            </div>`).join('');
-    },
-    
-    initScrollAnimations() {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
-        
-        document.querySelectorAll('.fade-in-up').forEach(el => {
-            observer.observe(el);
-        });
-    }
-};
-
-// ==================== MOBILE MENU ====================
-const mobileMenu = {
-    open() {
-        const overlay = document.getElementById('mobile-overlay');
-        const drawer = document.getElementById('mobile-drawer');
-        if (overlay) overlay.classList.add('open');
-        if (drawer) drawer.classList.add('open');
-        document.body.style.overflow = 'hidden';
-    },
-    
-    close() {
-        const overlay = document.getElementById('mobile-overlay');
-        const drawer = document.getElementById('mobile-drawer');
-        if (overlay) overlay.classList.remove('open');
-        if (drawer) drawer.classList.remove('open');
-        document.body.style.overflow = '';
-    }
-};
-
-// ==================== FLOATING HEADER SCROLL BEHAVIOR ====================
-function initHeaderScroll() {
-    let lastScrollY = 0;
-    const header = document.querySelector('.floating-header');
-    
-    if (!header) return;
-    
-    window.addEventListener('scroll', () => {
-        const currentScrollY = window.scrollY;
-        
-        if (currentScrollY > lastScrollY && currentScrollY > 100) {
-            // Scroll ke bawah → sembunyikan header
-            header.style.transform = 'translateY(-120%)';
-            header.style.opacity = '0';
-            header.style.transition = 'transform 0.4s ease, opacity 0.3s ease';
-        } else {
-            // Scroll ke atas → tampilkan header
-            header.style.transform = 'translateY(0)';
-            header.style.opacity = '1';
-            header.style.transition = 'transform 0.4s ease, opacity 0.3s ease';
-        }
-        
-        lastScrollY = currentScrollY;
+    this.apply(saved);
+  },
+  toggle() {
+    const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    this.apply(next);
+    localStorage.setItem('gomad-theme', next);
+  },
+  apply(mode) {
+    document.documentElement.setAttribute('data-theme', mode);
+    document.querySelectorAll('[data-logo]').forEach(img => {
+      img.src = mode === 'dark'
+        ? '/assets/images/logo-putih.png'
+        : '/assets/images/logo-merah.png';
     });
+    document.querySelectorAll('#theme-sun, #theme-sun-m').forEach(el => el.classList.toggle('hide', mode !== 'dark'));
+    document.querySelectorAll('#theme-moon, #theme-moon-m').forEach(el => el.classList.toggle('hide', mode === 'dark'));
+  }
+};
+
+/* ==================== MOBILE DRAWER ==================== */
+const drawer = {
+  open() {
+    const el = document.getElementById('m-drawer');
+    if (el) { el.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  },
+  close() {
+    const el = document.getElementById('m-drawer');
+    if (el) { el.classList.remove('open'); document.body.style.overflow = ''; }
+  }
+};
+
+/* ==================== SPA ROUTER ==================== */
+const router = {
+  routes: {
+    '/':              'pages/home.html',
+    '/platform':      'pages/platform.html',
+    '/agency':        'pages/agency.html',
+    '/customer':      'pages/customer.html',
+    '/contact':       'pages/contact.html',
+    '/docs':          'documentations/index.html',
+    '/docs/customer': 'documentations/customer.html',
+    '/docs/agency':   'documentations/agency.html',
+    '/docs/driver':   'documentations/driver.html',
+    '/docs/warung':   'documentations/warung.html',
+    '/docs/flow':     'documentations/flow.html',
+  },
+
+  async load(path) {
+    const mainContent = document.getElementById('main-content');
+    const url = this.routes[path];
+
+    if (!url) {
+      const el = document.getElementById(path);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        return;
+      }
+      mainContent.innerHTML = `
+        <section class="section" style="min-height:60vh">
+          <div class="container" style="text-align:center;padding-top:120px">
+            <div style="font-size:4rem;font-weight:800;color:var(--accent)">404</div>
+            <h2 class="h3" style="margin:12px 0">Halaman Tidak Ditemukan</h2>
+            <p class="muted">Halaman yang Anda cari tidak tersedia.</p>
+            <a href="#/" class="btn btn-primary" style="margin-top:22px">← Kembali ke Beranda</a>
+          </div>
+        </section>`;
+      return;
+    }
+
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    mainContent.innerHTML = `
+      <div style="min-height:70vh;display:grid;place-items:center">
+        <div style="text-align:center">
+          <div class="spin"></div>
+          <p class="faint" style="margin-top:14px;font-size:.9rem">Memuat…</p>
+        </div>
+      </div>`;
+
+    try {
+      const res = await fetch(url, { cache: 'no-store' });
+      if (!res.ok) throw new Error('Page not found');
+      const html = await res.text();
+      mainContent.innerHTML = html;
+      this.updateActiveNav(path);
+      this.initPage();
+    } catch (e) {
+      mainContent.innerHTML = `<div style="text-align:center;padding:120px 20px" class="muted">Gagal memuat halaman (${e.message})</div>`;
+    }
+  },
+
+  updateActiveNav(path) {
+    document.querySelectorAll('.nav-links a, .m-drawer a').forEach(a => {
+      const href = a.getAttribute('href') || '';
+      const active = href === `#${path}` || (path === '/' && href === '#/');
+      a.classList.toggle('active', active);
+    });
+  },
+
+  initPage() {
+    interactions.reveal();
+    interactions.counters();
+    interactions.marquee();
+    interactions.tilt();
+    interactions.magnetic();
+    interactions.scrollProgress();
+    if (window.mermaid) {
+      try {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default',
+          securityLevel: 'loose'
+        });
+        mermaid.run();
+      } catch (e) { /* skip */ }
+    }
+  }
+};
+
+/* ==================== INTERACTIONS ==================== */
+const interactions = {
+  reveal() {
+    const items = document.querySelectorAll('.reveal');
+    if (!items.length) return;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(en => {
+        if (en.isIntersecting) {
+          en.target.classList.add('in');
+          io.unobserve(en.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    items.forEach((el, i) => {
+      el.style.setProperty('--d', (i % 8) * 60);
+      io.observe(el);
+    });
+  },
+
+  counters() {
+    const els = document.querySelectorAll('[data-count]');
+    if (!els.length) return;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(en => {
+        if (!en.isIntersecting) return;
+        const el = en.target;
+        io.unobserve(el);
+        const target = parseFloat(el.getAttribute('data-count')) || 0;
+        const suffix = el.getAttribute('data-suffix') || '';
+        const dur = 1400;
+        const start = performance.now();
+        const step = (now) => {
+          const p = Math.min((now - start) / dur, 1);
+          const eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = Math.round(target * eased).toLocaleString('id-ID') + suffix;
+          if (p < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      });
+    }, { threshold: 0.5 });
+    els.forEach(el => io.observe(el));
+  },
+
+  marquee() {
+    document.querySelectorAll('.marquee-track').forEach(track => {
+      if (track.dataset.cloned) return;
+      track.dataset.cloned = '1';
+      track.innerHTML += track.innerHTML;
+    });
+  },
+
+  tilt() {
+    const els = document.querySelectorAll('[data-tilt]');
+    els.forEach(el => {
+      if (el.dataset.tiltInit) return;
+      el.dataset.tiltInit = '1';
+      el.addEventListener('mousemove', (e) => {
+        const r = el.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width - 0.5;
+        const y = (e.clientY - r.top) / r.height - 0.5;
+        el.style.transform = `perspective(1000px) rotateX(${(-y * 6).toFixed(2)}deg) rotateY(${(x * 6).toFixed(2)}deg) translateY(-4px)`;
+      });
+      el.addEventListener('mouseleave', () => {
+        el.style.transform = '';
+      });
+    });
+  },
+
+  magnetic() {
+    const els = document.querySelectorAll('[data-magnetic]');
+    els.forEach(el => {
+      if (el.dataset.magInit) return;
+      el.dataset.magInit = '1';
+      el.addEventListener('mousemove', (e) => {
+        const r = el.getBoundingClientRect();
+        const x = (e.clientX - r.left - r.width / 2) * 0.25;
+        const y = (e.clientY - r.top - r.height / 2) * 0.25;
+        el.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px)`;
+      });
+      el.addEventListener('mouseleave', () => { el.style.transform = ''; });
+    });
+  },
+
+  scrollProgress() {
+    const bar = document.getElementById('scroll-progress');
+    if (!bar) return;
+    const onScroll = () => {
+      const h = document.documentElement.scrollHeight - window.innerHeight;
+      const p = h > 0 ? (window.scrollY / h) * 100 : 0;
+      bar.style.width = p + '%';
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+};
+
+/* ==================== HEADER SCROLL ==================== */
+function initNavScroll() {
+  const nav = document.querySelector('.nav');
+  if (!nav) return;
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 20);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 }
 
-// ==================== INIT ====================
-document.addEventListener('DOMContentLoaded', () => {
-    // Load header & footer
-    Promise.all([
-        fetch('components/header.html').then(r => r.text()),
-        fetch('components/footer.html').then(r => r.text())
-    ]).then(([headerHtml, footerHtml]) => {
-        const headerContainer = document.getElementById('header-container');
-        const footerContainer = document.getElementById('footer-container');
-        
-        if (headerContainer) headerContainer.innerHTML = headerHtml;
-        if (footerContainer) footerContainer.innerHTML = footerHtml;
-        
-        // Bind mobile menu events after header loaded
-        setTimeout(() => {
-            const menuBtn = document.getElementById('mobile-menu-btn');
-            const overlay = document.getElementById('mobile-overlay');
-            const drawerClose = document.getElementById('mobile-drawer-close');
-            
-            if (menuBtn) menuBtn.addEventListener('click', mobileMenu.open);
-            if (overlay) overlay.addEventListener('click', mobileMenu.close);
-            if (drawerClose) drawerClose.addEventListener('click', mobileMenu.close);
-            
-            // Init floating header scroll behavior
-            initHeaderScroll();
-        }, 200);
-    }).catch(err => {
-        console.error('Failed to load header/footer:', err);
+/* ==================== LANDING DATA SYNC (opsional) ==================== */
+async function syncLandingData() {
+  const host = location.hostname;
+  const apiBase = host.includes('localhost') || host.includes('127.0.0.1')
+    ? 'http://localhost:8000/api/v1/landing'
+    : 'https://web.gomad.id/api/v1/landing';
+  try {
+    const res = await fetch(`${apiBase}/all`);
+    if (!res.ok) return;
+    const json = await res.json();
+    if (!json.success || !json.data) return;
+    const d = json.data;
+    const map = {
+      'stat-agencies': d.stats?.total_agencies,
+      'stat-routes': d.stats?.total_routes,
+      'stat-bookings': d.stats?.total_bookings,
+      'stat-warungs': d.stats?.total_warungs,
+      'stat-customers': d.stats?.total_customers,
+    };
+    Object.entries(map).forEach(([id, val]) => {
+      const el = document.getElementById(id);
+      if (el && val != null) el.textContent = val + '+';
     });
-    
-    // Init theme
-    theme.init();
-    
-    // Init router on hash change
-    window.addEventListener('hashchange', () => {
-        const hash = decodeURIComponent(location.hash.slice(1)) || '/';
-        router.load(hash);
-    });
+    if (d.popular_routes) renderPopularRoutes(d.popular_routes);
+    if (d.top_agencies) renderTopAgencies(d.top_agencies);
+  } catch (e) { /* backend offline — pakai data statis */ }
+}
 
-    // Load initial page
+function renderPopularRoutes(routes) {
+  const c = document.getElementById('popular-routes-container');
+  if (!c) return;
+  const fmt = new Intl.NumberFormat('id-ID');
+  c.innerHTML = routes.slice(0, 4).map(r => `
+    <div class="b-cell flat" style="display:flex;justify-content:space-between;align-items:center;padding:16px 18px">
+      <div style="display:flex;align-items:center;gap:12px">
+        <div class="b-icon" style="margin:0">📍</div>
+        <div>
+          <div style="font-weight:700;font-size:.92rem">${r.origin_city} → ${r.destination_city}</div>
+          <div class="faint" style="font-size:.78rem">${r.schedules_count} jadwal</div>
+        </div>
+      </div>
+      <div style="font-weight:800;color:var(--accent)">Rp ${fmt.format(r.min_price || 0)}</div>
+    </div>`).join('');
+}
+
+function renderTopAgencies(agencies) {
+  const c = document.getElementById('top-agencies-container');
+  if (!c) return;
+  c.innerHTML = agencies.slice(0, 3).map(a => `
+    <div class="b-cell flat" style="display:flex;align-items:center;gap:12px;padding:16px 18px">
+      <div class="avatar">${(a.agency_name || 'A')[0]}</div>
+      <div style="flex:1">
+        <div style="font-weight:700;font-size:.92rem">${a.agency_name}</div>
+        <div style="display:flex;gap:6px;align-items:center;font-size:.8rem">
+          <span class="rating">★★★★★</span><span class="faint">${a.rating || '0.0'} · ${a.total_bookings || 0} booking</span>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+/* ==================== INIT ==================== */
+document.addEventListener('DOMContentLoaded', () => {
+  // Load header & footer
+  Promise.all([
+    fetch('components/header.html').then(r => r.text()),
+    fetch('components/footer.html').then(r => r.text())
+  ]).then(([h, f]) => {
+    const hc = document.getElementById('header-container');
+    const fc = document.getElementById('footer-container');
+    if (hc) hc.innerHTML = h;
+    if (fc) fc.innerHTML = f;
+    setTimeout(() => {
+      theme.apply(document.documentElement.getAttribute('data-theme') || 'light');
+      bindChrome();
+      initNavScroll();
+      interactions.scrollProgress();
+    }, 50);
+  }).catch(e => console.error('Gagal muat header/footer', e));
+
+  theme.init();
+  bindChrome();
+
+  window.addEventListener('hashchange', () => {
     const hash = decodeURIComponent(location.hash.slice(1)) || '/';
     router.load(hash);
+  });
 
-    // WA tooltip - show after 3 seconds, hide after 5 more
-    setTimeout(() => {
-        const tooltip = document.getElementById('wa-tooltip');
-        if (tooltip) {
-            tooltip.style.opacity = '1';
-            setTimeout(() => { 
-                tooltip.style.opacity = '0'; 
-            }, 5000);
-        }
-    }, 3000);
-    
-    // Listen for system theme changes
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-        if (!localStorage.getItem('gomad-theme')) {
-            theme.apply(e.matches ? 'dark' : 'light');
-        }
-    });
+  const hash = decodeURIComponent(location.hash.slice(1)) || '/';
+  router.load(hash);
+
+  syncLandingData();
 });
 
-// ==================== KEYBOARD SHORTCUTS ====================
-document.addEventListener('keydown', (e) => {
-    // ESC to close mobile menu
-    if (e.key === 'Escape') {
-        mobileMenu.close();
-    }
-    
-    // Ctrl/Cmd + T to toggle theme
-    if ((e.ctrlKey || e.metaKey) && e.key === 't') {
-        e.preventDefault();
-        theme.toggle();
-    }
-});
+function bindChrome() {
+  // Drawer
+  const openBtn = document.getElementById('nav-burger');
+  const drawerEl = document.getElementById('m-drawer');
+  if (openBtn) openBtn.addEventListener('click', drawer.open);
+  if (drawerEl) {
+    drawerEl.querySelector('.overlay')?.addEventListener('click', drawer.close);
+    drawerEl.querySelectorAll('a').forEach(a => a.addEventListener('click', drawer.close));
+  }
+  // Theme buttons
+  document.querySelectorAll('[data-theme-toggle]').forEach(b => b.addEventListener('click', () => theme.toggle()));
+}
+
+/* Scroll ke section di halaman dokumentasi */
+function scrollToSection(event, id) {
+  if (event) event.preventDefault();
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  document.querySelectorAll('.doc-nav a').forEach(a => {
+    a.classList.toggle('active', (a.getAttribute('href') || '').slice(1) === id);
+  });
+}

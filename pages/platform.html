@@ -1,239 +1,157 @@
-<!-- ═══════════════════════════════════ -->
-<!-- PAGE HEADER (Typography Editorial) -->
-<!-- ═══════════════════════════════════ -->
-<section class="page-header pt-36">
-    <div class="container-landing">
-        <div class="flex items-center justify-center gap-3 mb-6">
-            <div class="h-px w-8 bg-[#C1121F]/40"></div>
-            <span class="label">Platform</span>
-            <div class="h-px w-8 bg-[#C1121F]/40"></div>
+<!-- ══════════════════════════════════════════
+     PAGE HERO
+     ══════════════════════════════════════════ -->
+<section class="hero" style="padding-bottom:40px">
+    <div class="hero-bg">
+        <div class="orb orb-1"></div>
+        <div class="grid-lines"></div>
+    </div>
+    <div class="container">
+        <div class="reveal" style="text-align:center;max-width:720px;margin-inline:auto">
+            <span class="eyebrow" style="justify-content:center">Platform GoMad</span>
+            <h1 class="display" style="margin-top:16px">Ekosistem mobilitas <span style="color:var(--accent)">satu pintu</span></h1>
+            <p class="lead" style="margin-top:18px">Enam peran terhubung — Customer, Agency, Driver, Warung, Admin, dan aplikasi mobile — berbagi satu data real-time.</p>
         </div>
-        <h1>Kenali Platform GoMad</h1>
-        <p>Ekosistem lengkap untuk mobilitas — dari booking travel, rental mobil, hingga pembayaran di warung.</p>
     </div>
 </section>
 
-<!-- ═══════════════════════════════════ -->
-<!-- MODULE 1: TRAVEL -->
-<!-- ═══════════════════════════════════ -->
+<!-- ══════════════════════════════════════════
+     MODULES BENTO
+     ══════════════════════════════════════════ -->
+<section class="section" style="padding-top:20px">
+    <div class="container">
+        <div class="bento" data-reveal-stagger>
+
+            <div class="b-cell c-8 reveal">
+                <div style="display:flex;flex-wrap:wrap;gap:28px;align-items:center">
+                    <div style="flex:1;min-width:240px">
+                        <span class="b-tag">Travel</span>
+                        <div class="b-title" style="font-size:1.3rem;margin-top:12px">Booking travel door-to-door</div>
+                        <p class="b-desc" style="margin-top:8px">Rute multi-stop, denah kursi real-time (kursi supir dikunci), jadwal PP, harga per segmen. Pembayaran online / warung / COD.</p>
+                        <div style="display:grid;gap:9px;margin-top:16px">
+                            <span class="check">Pilih kursi sendiri di denah</span>
+                            <span class="check">Jemput di rumah & antar ke tujuan</span>
+                            <span class="check">Transfer penumpang gratis bila perlu</span>
+                        </div>
+                    </div>
+                    <div class="mock-img" style="max-width:250px;box-shadow:var(--shadow-md)">
+                        <img src="/assets/images/mockup/travel-search.svg" alt="Cari travel GoMad">
+                    </div>
+                </div>
+            </div>
+
+            <div class="b-cell c-4 dark reveal">
+                <span class="b-tag">Rental</span>
+                <div class="b-icon">🚗</div>
+                <div class="b-title">Lepas Kunci + Supir</div>
+                <p class="b-desc">Verifikasi dokumen (KTP, SIM, selfie) sekali, lalu sewa mobil tanpa supir atau dengan supir — tarif per hari/jam, deposit & OTS.</p>
+                <div style="display:flex;gap:8px;margin-top:16px;flex-wrap:wrap">
+                    <span class="pill">KTP/SIM/Selfie</span>
+                    <span class="pill">Deposit</span>
+                </div>
+            </div>
+
+            <div class="b-cell c-4 reveal">
+                <span class="b-tag">Warung</span>
+                <div class="b-icon">🏪</div>
+                <div class="b-title">POS & pembayaran</div>
+                <p class="b-desc">Konfirmasi pembayaran via PIN, kelola produk, dan terima komisi settlement setiap periode.</p>
+            </div>
+
+            <div class="b-cell c-4 reveal">
+                <span class="b-tag">Agency</span>
+                <div class="b-icon">📊</div>
+                <div class="b-title">Dashboard agency</div>
+                <p class="b-desc">Jadwal multi-stop, kendaraan, driver, approval pengajuan supir, pendapatan, komisi, dan pencairan.</p>
+            </div>
+
+            <div class="b-cell c-4 reveal">
+                <span class="b-tag">Driver</span>
+                <div class="b-icon">👨‍✈️</div>
+                <div class="b-title">Aplikasi driver</div>
+                <p class="b-desc">Mulai jadwal sendiri, daftar penumpang, konfirmasi COD, dan transfer penumpang antar jadwal.</p>
+            </div>
+
+            <div class="b-cell c-4 glass reveal">
+                <span class="b-tag">Admin</span>
+                <div class="b-icon">🛡️</div>
+                <div class="b-title">Monitoring & kontrol</div>
+                <p class="b-desc">Verifikasi agency & dokumen customer, kelola rute/promo, koin COD, dan pantau seluruh transaksi real-time.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     PAYMENT METHODS
+     ══════════════════════════════════════════ -->
+<section class="section" style="background:var(--bg-soft)">
+    <div class="container">
+        <div class="section-head center reveal">
+            <span class="eyebrow">Pembayaran</span>
+            <h2 class="h2">Bayar dengan cara apa pun</h2>
+            <p class="lead">Fleksibilitas pembayaran yang disesuaikan dengan kebiasaan masyarakat.</p>
+        </div>
+        <div class="bento" data-reveal-stagger>
+            <div class="b-cell c-3 reveal">
+                <div class="b-icon">💳</div>
+                <div class="b-title">Online</div>
+                <p class="b-desc">Transfer bank, virtual account, QRIS, dan e-wallet via Midtrans.</p>
+            </div>
+            <div class="b-cell c-3 reveal">
+                <div class="b-icon">🏪</div>
+                <div class="b-title">Warung GoMad</div>
+                <p class="b-desc">Kode bayar → bayar tunai di warung terdekat → tiket aktif.</p>
+            </div>
+            <div class="b-cell c-3 reveal">
+                <div class="b-icon">💵</div>
+                <div class="b-title">COD</div>
+                <p class="b-desc">Bayar tunai langsung ke sopir saat penjemputan (travel).</p>
+            </div>
+            <div class="b-cell c-3 accent reveal">
+                <div class="b-icon">🚗</div>
+                <div class="b-title">OTS Rental</div>
+                <p class="b-desc">Bayar di tempat saat pengambilan mobil — untuk rental yang mengizinkan OTS.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     MOBILE APP
+     ══════════════════════════════════════════ -->
 <section class="section">
-    <div class="container-landing">
-        <div class="two-col">
-            <!-- Visual -->
-            <div class="two-col-image order-2 md:order-1">
-                <div class="relative">
-                    <div class="absolute inset-0 bg-[#C1121F]/5 rounded-full blur-3xl"></div>
-                    <span class="relative text-6xl md:text-8xl">🚐</span>
+    <div class="container">
+        <div class="bento" style="align-items:center">
+            <div class="c-7 reveal reveal-left">
+                <span class="eyebrow">Aplikasi Mobile</span>
+                <h2 class="h2" style="margin-top:14px">GoMad di genggaman</h2>
+                <p class="lead" style="margin-top:14px">Aplikasi Flutter untuk customer, driver, dan warung — pengalaman konsisten dengan web.</p>
+                <div class="bento" style="margin-top:24px" data-reveal-stagger>
+                    <div class="b-cell c-6 reveal">
+                        <div class="b-icon">📱</div>
+                        <div class="b-title">Customer App</div>
+                        <p class="b-desc">Booking travel & rental, dokumen lepas kunci, e-ticket, riwayat.</p>
+                    </div>
+                    <div class="b-cell c-6 reveal">
+                        <div class="b-icon">🗺️</div>
+                        <div class="b-title">Driver App</div>
+                        <p class="b-desc">Jadwal hari ini, penumpang, mulai perjalanan, transfer.</p>
+                    </div>
+                </div>
+                <div style="display:flex;gap:12px;margin-top:24px;flex-wrap:wrap">
+                    <a class="btn btn-ghost" href="#/docs/driver">Lihat Panduan Driver</a>
+                    <a class="btn btn-primary" href="https://web.gomad.id" target="_blank" rel="noopener">Coba Platform</a>
                 </div>
             </div>
-            <!-- Content -->
-            <div class="two-col-content order-1 md:order-2">
-                <span class="text-[#C1121F] font-mono uppercase tracking-wider text-sm bg-[#C1121F]/5 px-3 py-1 rounded-full inline-block mb-4">
-                    Modul Travel
-                </span>
-                <h2>Booking Travel Antar Kota</h2>
-                <p>
-                    Cari jadwal travel, booking tiket, pilih metode pembayaran (online, warung, atau COD), 
-                    dan dapatkan E-Ticket. Semua dalam satu platform.
-                </p>
-                <ul class="check-list">
-                    <li><span class="check-icon">✓</span> Multi-stop — jemput di banyak titik</li>
-                    <li><span class="check-icon">✓</span> 3 metode pembayaran — Online, Warung, COD</li>
-                    <li><span class="check-icon">✓</span> E-Ticket & live tracking</li>
-                    <li><span class="check-icon">✓</span> Booking H-30 sebelum keberangkatan</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ═══════════════════════════════════ -->
-<!-- MODULE 2: RENTAL -->
-<!-- ═══════════════════════════════════ -->
-<section class="section section-bg">
-    <div class="container-landing">
-        <div class="two-col">
-            <!-- Content -->
-            <div class="two-col-content">
-                <span class="text-[#C1121F] font-mono uppercase tracking-wider text-sm bg-[#C1121F]/5 px-3 py-1 rounded-full inline-block mb-4">
-                    Modul Rental
-                </span>
-                <h2>Rental Mobil Fleksibel</h2>
-                <p>
-                    Sewa mobil lepas kunci (self-drive) atau dengan supir. Upload KTP & SIM, booking, bayar, langsung pakai.
-                </p>
-                <ul class="check-list">
-                    <li><span class="check-icon">✓</span> Lepas kunci & dengan supir</li>
-                    <li><span class="check-icon">✓</span> Upload KTP & SIM untuk verifikasi</li>
-                    <li><span class="check-icon">✓</span> Harga transparan — per jam atau per hari</li>
-                    <li><span class="check-icon">✓</span> Kalender ketersediaan real-time</li>
-                </ul>
-            </div>
-            <!-- Visual -->
-            <div class="two-col-image">
-                <div class="relative">
-                    <div class="absolute inset-0 bg-[#C1121F]/5 rounded-full blur-3xl"></div>
-                    <span class="relative text-6xl md:text-8xl">🚗</span>
+            <div class="b-cell c-5 reveal reveal-right" style="padding:0;border:0;box-shadow:none;background:transparent">
+                <div class="mock-frame" data-tilt>
+                    <div class="mock-img">
+                        <img src="/assets/images/mockup/driver-app.svg" alt="Aplikasi driver GoMad">
+                    </div>
+                    <div class="mock-float f1"><span class="dot"></span>Jadwal dimulai</div>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
-
-<!-- ═══════════════════════════════════ -->
-<!-- MODULE 3: WARUNG -->
-<!-- ═══════════════════════════════════ -->
-<section class="section">
-    <div class="container-landing">
-        <div class="two-col">
-            <!-- Visual -->
-            <div class="two-col-image order-2 md:order-1">
-                <div class="relative">
-                    <div class="absolute inset-0 bg-[#C1121F]/5 rounded-full blur-3xl"></div>
-                    <span class="relative text-6xl md:text-8xl">🏪</span>
-                </div>
-            </div>
-            <!-- Content -->
-            <div class="two-col-content order-1 md:order-2">
-                <span class="text-[#C1121F] font-mono uppercase tracking-wider text-sm bg-[#C1121F]/5 px-3 py-1 rounded-full inline-block mb-4">
-                    Warung GoMad
-                </span>
-                <h2>Bayar di Warung Terdekat</h2>
-                <p>
-                    Tidak punya rekening? Bayar cash di Warung GoMad terdekat. Tunjukkan kode bayar, 
-                    konfirmasi dengan PIN, selesai.
-                </p>
-                <ul class="check-list">
-                    <li><span class="check-icon">✓</span> 30+ warung tersebar di Madura</li>
-                    <li><span class="check-icon">✓</span> Konfirmasi instan dengan PIN 6 digit</li>
-                    <li><span class="check-icon">✓</span> Pencairan hasil transaksi sesuai jadwal settlement mingguan</li>
-                    <li><span class="check-icon">✓</span> Komisi 2% per transaksi</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ═══════════════════════════════════ -->
-<!-- MODULE 4: AGENCY DASHBOARD -->
-<!-- ═══════════════════════════════════ -->
-<section class="section section-bg">
-    <div class="container-landing">
-        <div class="two-col">
-            <!-- Content -->
-            <div class="two-col-content">
-                <span class="text-[#C1121F] font-mono uppercase tracking-wider text-sm bg-[#C1121F]/5 px-3 py-1 rounded-full inline-block mb-4">
-                    Dashboard Agency
-                </span>
-                <h2>Kelola Bisnis dalam Satu Dashboard</h2>
-                <p>
-                    Agency mendapat dashboard lengkap untuk mengelola jadwal, kendaraan, driver,
-                    booking, pendapatan, pencairan, dan laporan operasional dalam satu tempat.
-                </p>
-                <ul class="check-list">
-                    <li><span class="check-icon">✓</span> Chart analitik real-time</li>
-                    <li><span class="check-icon">✓</span> Manajemen jadwal multi-stop</li>
-                    <li><span class="check-icon">✓</span> Transfer penumpang antar jadwal</li>
-                    <li><span class="check-icon">✓</span> Pendapatan & pencairan ke rekening</li>
-                </ul>
-            </div>
-            <!-- Visual -->
-            <div class="two-col-image">
-                <div class="relative">
-                    <div class="absolute inset-0 bg-[#C1121F]/5 rounded-full blur-3xl"></div>
-                    <span class="relative text-6xl md:text-8xl">📊</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="section section-bg">
-    <div class="container-landing">
-        <div class="section-header">
-            <span class="label">Cara Kerja Platform</span>
-            <h2>GoMad Menghubungkan Pelanggan dan Agency</h2>
-            <p>GoMad menyediakan platform pemesanan, sementara layanan perjalanan dijalankan oleh agency yang telah terverifikasi.</p>
-        </div>
-
-        <div class="grid-2col">
-            <div class="card">
-                <h3>Untuk Pelanggan</h3>
-                <p>Cari jadwal, lakukan pemesanan, pilih metode pembayaran, dan terima E-Ticket.</p>
-            </div>
-
-            <div class="card">
-                <h3>Untuk Agency</h3>
-                <p>Kelola jadwal, menerima booking, memantau pendapatan, dan mengajukan pencairan hasil transaksi ke rekening bank.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ═══════════════════════════════════ -->
-<!-- FEATURES GRID -->
-<!-- ═══════════════════════════════════ -->
-<section class="section">
-    <div class="container-landing">
-        <div class="section-header">
-            <span class="label">Fitur Lengkap</span>
-            <h2>Semua yang Anda Butuhkan</h2>
-            <p>Fitur-fitur yang membuat GoMad berbeda dari platform lain.</p>
-        </div>
-        
-        <div class="grid-2col max-w-4xl mx-auto">
-            <div class="card fade-in-up">
-                <span class="text-2xl mb-3 block">📅</span>
-                <h3 class="font-bold text-lg mb-2">Multi-Stop Schedule</h3>
-                <p class="text-sm text-gray-500 dark:text-gray-400 font-light">Buat jadwal dengan banyak titik jemput dan antar. Harga per segmen.</p>
-            </div>
-            <div class="card fade-in-up">
-                <span class="text-2xl mb-3 block">🔄</span>
-                <h3 class="font-bold text-lg mb-2">Transfer Penumpang</h3>
-                <p class="text-sm text-gray-500 dark:text-gray-400 font-light">Pindahkan penumpang ke jadwal lain. Internal & eksternal agency.</p>
-            </div>
-            <div class="card fade-in-up">
-                <span class="text-2xl mb-3 block">💰</span>
-                <h3 class="font-bold text-lg mb-2">Pendapatan Agency</h3>
-                <p class="text-sm text-gray-500 dark:text-gray-400 font-light">
-                Pendapatan dari booking yang telah selesai dapat dipantau secara real-time dan diajukan pencairannya ke rekening agency.
-                </p>
-            </div>
-            <div class="card fade-in-up">
-                <span class="text-2xl mb-3 block">🚗</span>
-                <h3 class="font-bold text-lg mb-2">Pembayaran COD</h3>
-                <p class="text-sm text-gray-500 dark:text-gray-400 font-light">
-                Customer dapat melakukan pembayaran tunai kepada driver sesuai ketentuan layanan. Transaksi akan diverifikasi sebelum proses settlement kepada agency.
-                </p>
-            </div>
-            <div class="card fade-in-up">
-                <span class="text-2xl mb-3 block">🎫</span>
-                <h3 class="font-bold text-lg mb-2">Promo & Diskon</h3>
-                <p class="text-sm text-gray-500 dark:text-gray-400 font-light">Buat promo general, selektif, atau referral. Atur share biaya.</p>
-            </div>
-            <div class="card fade-in-up">
-                <span class="text-2xl mb-3 block">📈</span>
-                <h3 class="font-bold text-lg mb-2">Laporan Pendapatan</h3>
-                <p class="text-sm text-gray-500 dark:text-gray-400 font-light">Pantau pendapatan harian, bulanan, tahunan. Chart interaktif.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ═══════════════════════════════════ -->
-<!-- CTA -->
-<!-- ═══════════════════════════════════ -->
-<section class="cta-section section-bg">
-    <div class="container-landing">
-        <h2>Siap Bergabung?</h2>
-        <p>Jadilah bagian dari ekosistem GoMad. Pilih peran Anda.</p>
-        <div class="cta-actions">
-            <a href="#/agency" class="btn-primary text-lg px-10 py-4 rounded-xl">
-                Untuk Agency →
-            </a>
-            <a href="#/customer" class="btn-outline text-lg px-10 py-4 rounded-xl">
-                Untuk Customer →
-            </a>
         </div>
     </div>
 </section>

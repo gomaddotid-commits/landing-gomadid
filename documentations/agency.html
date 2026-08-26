@@ -1,366 +1,90 @@
-<!-- ═══════════════════════════════════ -->
-<!-- DOCUMENTATION LAYOUT -->
-<!-- ═══════════════════════════════════ -->
-<div class="container-landing py-12 pt-36">
-    <div class="grid lg:grid-cols-4 gap-8">
-        
-        <!-- Sidebar -->
-        <div class="lg:col-span-1">
-            <div class="doc-sidebar">
-                <div class="flex items-center gap-2 mb-6">
-                    <span class="text-2xl">🏢</span>
-                    <h3 class="font-bold text-lg">Panduan Agency</h3>
-                </div>
-                <nav class="space-y-1">
-                    <a href="#setup" class="doc-sidebar-link active" onclick="scrollToSection(event, 'setup')">📝 Setup Profil</a>
-                    <a href="#verification" class="doc-sidebar-link" onclick="scrollToSection(event, 'verification')">✅ Verifikasi</a>
-                    <a href="#schedule" class="doc-sidebar-link" onclick="scrollToSection(event, 'schedule')">📅 Buat Jadwal</a>
-                    <a href="#pricing" class="doc-sidebar-link" onclick="scrollToSection(event, 'pricing')">💲 Atur Harga</a>
-                    <a href="#transfer" class="doc-sidebar-link" onclick="scrollToSection(event, 'transfer')">🔄 Transfer Penumpang</a>
-                    <a href="#wallet" class="doc-sidebar-link" onclick="scrollToSection(event, 'wallet')">💵 Pendapatan</a>
-                    <a href="#withdrawal" class="doc-sidebar-link" onclick="scrollToSection(event, 'withdrawal')">🏦 Penarikan</a>
-                    <a href="#rental" class="doc-sidebar-link" onclick="scrollToSection(event, 'rental')">🚗 Setup Rental</a>
-                    <a href="#cod" class="doc-sidebar-link" onclick="scrollToSection(event, 'cod')">🚗 COD & Deposit</a>
-                    <a href="#faq" class="doc-sidebar-link" onclick="scrollToSection(event, 'faq')">❓ FAQ</a>
-                </nav>
-                
-                <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-800">
-                    <a href="#/docs" class="text-sm text-gray-500 dark:text-gray-400 hover:text-[#C1121F] transition-colors flex items-center gap-1">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
-                        </svg>
-                        Kembali ke Dokumentasi
-                    </a>
-                </div>
+<div class="container" style="padding-top:calc(var(--nav-h) + 44px);padding-bottom:80px">
+    <div class="doc-wrap">
+        <aside class="doc-side reveal">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
+                <div class="b-icon" style="margin:0">🏢</div>
+                <div style="font-weight:800;font-size:1.05rem">Panduan Agency</div>
             </div>
-        </div>
-        
-        <!-- Content -->
-        <div class="lg:col-span-3 space-y-16">
-            
-            <!-- Setup -->
-            <div id="setup">
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="h-px w-8 bg-[#C1121F]/40"></div>
-                    <h2 class="text-2xl font-bold">📝 Setup Profil Agency</h2>
-                </div>
-                
-                <div class="space-y-4">
-                    <div class="card">
-                        <div class="flex items-start gap-4">
-                            <div class="w-10 h-10 bg-[#C1121F] text-white rounded-xl flex items-center justify-center font-bold text-lg flex-shrink-0">1</div>
-                            <div>
-                                <h3 class="font-bold text-lg mb-2">Daftar Akun Agency</h3>
-                                <p class="text-gray-500 dark:text-gray-400 font-light text-sm leading-relaxed">
-                                    Buka halaman <strong>Daftar</strong> → pilih <strong>Agency</strong>. 
-                                    Isi nama, email, password, dan nama agency.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="card">
-                        <div class="flex items-start gap-4">
-                            <div class="w-10 h-10 bg-[#C1121F] text-white rounded-xl flex items-center justify-center font-bold text-lg flex-shrink-0">2</div>
-                            <div>
-                                <h3 class="font-bold text-lg mb-2">Lengkapi Profil</h3>
-                                <p class="text-gray-500 dark:text-gray-400 font-light text-sm leading-relaxed">
-                                    Setelah login, Anda akan diarahkan ke halaman <strong>Setup Profil</strong>. Isi semua field wajib:
-                                </p>
-                                <ul class="list-disc list-inside text-sm text-gray-500 dark:text-gray-400 font-light mt-2 space-y-1">
-                                    <li><strong>Nama Agency</strong> — Nama resmi agency travel Anda</li>
-                                    <li><strong>Deskripsi</strong> — Ceritakan tentang layanan agency (minimal 50 karakter)</li>
-                                    <li><strong>Tahun Berdiri</strong> — Tahun mulai beroperasi</li>
-                                    <li><strong>Kontak Person</strong> — Nama penanggung jawab</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="card">
-                        <div class="flex items-start gap-4">
-                            <div class="w-10 h-10 bg-[#C1121F] text-white rounded-xl flex items-center justify-center font-bold text-lg flex-shrink-0">3</div>
-                            <div>
-                                <h3 class="font-bold text-lg mb-2">Pilih Lokasi & Zona Layanan</h3>
-                                <p class="text-gray-500 dark:text-gray-400 font-light text-sm leading-relaxed">
-                                    Pilih <strong>Provinsi → Kabupaten/Kota → Kecamatan</strong> untuk lokasi agency Anda. 
-                                    Kemudian centang <strong>Zona Layanan</strong> — kota mana saja yang dilayani.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="card">
-                        <div class="flex items-start gap-4">
-                            <div class="w-10 h-10 bg-[#C1121F] text-white rounded-xl flex items-center justify-center font-bold text-lg flex-shrink-0">4</div>
-                            <div>
-                                <h3 class="font-bold text-lg mb-2">Upload Dokumen</h3>
-                                <p class="text-gray-500 dark:text-gray-400 font-light text-sm leading-relaxed">
-                                    Upload <strong>dokumen PDF</strong> berisi profil agency, identitas pemilik (KTP), 
-                                    dan surat pernyataan keaslian data. Maksimal 10MB.
-                                </p>
-                                <div class="mt-3 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-xl p-3">
-                                    <p class="text-xs text-yellow-700 dark:text-yellow-400 font-light">
-                                        ⚠️ Dokumen wajib diisi! Tanpa dokumen, verifikasi tidak dapat diproses.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="card">
-                        <div class="flex items-start gap-4">
-                            <div class="w-10 h-10 bg-[#C1121F] text-white rounded-xl flex items-center justify-center font-bold text-lg flex-shrink-0">5</div>
-                            <div>
-                                <h3 class="font-bold text-lg mb-2">Upload Logo & Cover</h3>
-                                <p class="text-gray-500 dark:text-gray-400 font-light text-sm leading-relaxed">
-                                    Upload foto logo (untuk profil) dan cover image (untuk header halaman agency). Format JPG/PNG.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <nav class="doc-nav">
+                <a href="#setup" class="active" onclick="scrollToSection(event,'setup')">🚀 Setup &amp; Verifikasi</a>
+                <a href="#dashboard" onclick="scrollToSection(event,'dashboard')">📊 Dashboard</a>
+                <a href="#jadwal" onclick="scrollToSection(event,'jadwal')">🗓️ Jadwal &amp; Armada</a>
+                <a href="#approval" onclick="scrollToSection(event,'approval')">🕓 Approval Pengajuan Supir</a>
+                <a href="#driver" onclick="scrollToSection(event,'driver')">👨‍✈️ Kelola Driver</a>
+                <a href="#transfer" onclick="scrollToSection(event,'transfer')">🔄 Transfer Penumpang</a>
+                <a href="#wallet" onclick="scrollToSection(event,'wallet')">💰 Dompet, Komisi &amp; COD</a>
+                <a href="#withdraw" onclick="scrollToSection(event,'withdraw')">🏦 Pencairan &amp; Settlement</a>
+                <a href="#laporan" onclick="scrollToSection(event,'laporan')">📈 Laporan</a>
+            </nav>
+            <div style="margin-top:20px;padding-top:18px;border-top:1px solid var(--line)">
+                <a href="#/docs" style="display:inline-flex;align-items:center;gap:6px;font-size:.9rem;color:var(--ink-soft)">← Kembali ke Dokumentasi</a>
             </div>
-            
-            <!-- Verification -->
-            <div id="verification">
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="h-px w-8 bg-[#C1121F]/40"></div>
-                    <h2 class="text-2xl font-bold">✅ Proses Verifikasi</h2>
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div class="card card-center">
-                        <div class="text-4xl mb-3">⏳</div>
-                        <h3 class="font-bold mb-2">Pending</h3>
-                        <p class="text-sm text-gray-500 dark:text-gray-400 font-light">Admin sedang mereview dokumen Anda. Proses 1-3 hari kerja.</p>
-                    </div>
-                    <div class="card card-center border-green-500">
-                        <div class="text-4xl mb-3">✅</div>
-                        <h3 class="font-bold mb-2">Disetujui</h3>
-                        <p class="text-sm text-gray-500 dark:text-gray-400 font-light">Semua fitur terbuka. Bisa buat jadwal & terima booking.</p>
-                    </div>
-                    <div class="card card-center border-red-500">
-                        <div class="text-4xl mb-3">❌</div>
-                        <h3 class="font-bold mb-2">Ditolak</h3>
-                        <p class="text-sm text-gray-500 dark:text-gray-400 font-light">Ada dokumen kurang. Perbaiki & setup ulang dari awal.</p>
-                    </div>
-                </div>
+        </aside>
+
+        <div>
+            <div class="doc-section" id="setup">
+                <h2>🚀 Setup &amp; Verifikasi</h2>
+                <p>Daftar sebagai agency, lengkapi profil, lalu tunggu verifikasi admin.</p>
+                <div class="step"><div class="num">1</div><div><h4>Daftar akun agency</h4><p>Gunakan email &amp; password, pilih peran <strong>Agency</strong>.</p></div></div>
+                <div class="step"><div class="num">2</div><div><h4>Lengkapi profil</h4><p>Nama agency, alamat, area cakupan (coverage cities), kontak, dan deskripsi.</p></div></div>
+                <div class="step"><div class="num">3</div><div><h4>Verifikasi admin</h4><p>Admin menyetujui agency. Setelah aktif, Anda bisa menambah kendaraan &amp; jadwal.</p></div></div>
+                <div class="callout ok">✅ Hanya agency terverifikasi yang muncul di pencarian customer.</div>
             </div>
-            
-            <!-- Schedule -->
-            <div id="schedule">
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="h-px w-8 bg-[#C1121F]/40"></div>
-                    <h2 class="text-2xl font-bold">📅 Membuat Jadwal Multi-Stop</h2>
-                </div>
-                
-                <div class="space-y-4">
-                    <div class="card">
-                        <h3 class="font-bold text-lg mb-3">Langkah Membuat Jadwal</h3>
-                        <ol class="space-y-3 text-sm text-gray-500 dark:text-gray-400 font-light list-decimal list-inside">
-                            <li>Pilih <strong>Rute</strong> yang sudah disediakan admin</li>
-                            <li>Pilih <strong>Kendaraan</strong> & <strong>Driver</strong> (opsional)</li>
-                            <li>Tentukan <strong>Tanggal & Jam</strong> keberangkatan</li>
-                            <li>Pilih <strong>Kelas</strong> (Ekonomi/Premium/Charter)</li>
-                            <li>Set <strong>Harga Dasar per Seat</strong></li>
-                            <li><strong>Konfigurasi Stop:</strong> Centang Pickup/Dropoff di setiap stop tengah</li>
-                            <li><strong>Isi Harga:</strong> Sistem akan meminta harga untuk setiap kombinasi Pickup → Dropoff</li>
-                        </ol>
-                    </div>
-                    
-                    <div class="card bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800">
-                        <p class="text-sm text-blue-700 dark:text-blue-400 font-light">
-                            💡 <strong>Tips Multi-Stop:</strong> Stop pertama otomatis jadi Pickup, stop terakhir otomatis jadi Dropoff. 
-                            Stop tengah bisa dicentang Pickup dan/atau Dropoff sesuai kebutuhan. Semua kombinasi Pickup → Dropoff wajib diisi harganya.
-                        </p>
-                    </div>
-                </div>
+
+            <div class="doc-section" id="dashboard">
+                <h2>📊 Dashboard</h2>
+                <p>Ringkasan operasional harian &amp; bulanan: jumlah booking, pendapatan, jadwal aktif, rental berjalan, dan transaksi dompet terbaru.</p>
+                <div class="callout info">💡 Klik detail pada daftar untuk melihat rincian per-agency, driver, dan riwayat transaksi.</div>
             </div>
-            
-            <!-- Pricing -->
-            <div id="pricing">
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="h-px w-8 bg-[#C1121F]/40"></div>
-                    <h2 class="text-2xl font-bold">💲 Atur Harga per Segmen</h2>
-                </div>
-                <div class="card">
-                    <p class="text-gray-500 dark:text-gray-400 font-light leading-relaxed mb-4">
-                        Setiap kombinasi Pickup → Dropoff harus punya harga. Contoh:
-                    </p>
-                    <div class="bg-[#F5F5F5] dark:bg-[#1a1a1a] rounded-xl p-4 font-mono text-sm">
-                        <div class="flex justify-between py-2 border-b border-gray-200 dark:border-gray-700">
-                            <span>Sumenep → Surabaya</span>
-                            <span class="text-[#C1121F] font-bold">Rp 150.000</span>
-                        </div>
-                        <div class="flex justify-between py-2 border-b border-gray-200 dark:border-gray-700">
-                            <span>Sumenep → Pamekasan</span>
-                            <span class="text-[#C1121F] font-bold">Rp 50.000</span>
-                        </div>
-                        <div class="flex justify-between py-2">
-                            <span>Pamekasan → Surabaya</span>
-                            <span class="text-[#C1121F] font-bold">Rp 120.000</span>
-                        </div>
-                    </div>
-                </div>
+
+            <div class="doc-section" id="jadwal">
+                <h2>🗓️ Jadwal &amp; Armada</h2>
+                <p>Kelola kendaraan dan jadwal travel.</p>
+                <ul class="step" style="list-style:none">
+                    <li style="list-style:none;padding:0"><h4>Kendaraan &amp; seat layout</h4><p>Tambah kendaraan dengan kapasitas &amp; denah kursi (mis. 4×2). Tandai <strong>kursi supir</strong> — tidak bisa dipilih penumpang.</p></li>
+                    <li style="list-style:none;padding:0;margin-top:10px"><h4>Jadwal multi-stop &amp; PP</h4><p>Buat jadwal dengan banyak titik jemput/antar, harga per segmen, dan dukung perjalanan <strong>pergi-pulang (PP)</strong>. Atur metode pembayaran (Midtrans / Cash / COD) per jadwal.</p></li>
+                    <li style="list-style:none;padding:0;margin-top:10px"><h4>Kendaraan rental</h4><p>Untuk rental, atur tarif per hari/jam, deposit, izin lepas kunci / dengan supir, dan OTS.</p></li>
+                </ul>
             </div>
-            
-            <!-- Transfer -->
-            <div id="transfer">
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="h-px w-8 bg-[#C1121F]/40"></div>
-                    <h2 class="text-2xl font-bold">🔄 Transfer Penumpang</h2>
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="card">
-                        <h3 class="font-bold text-lg mb-3">Internal Transfer</h3>
-                        <p class="text-sm text-gray-500 dark:text-gray-400 font-light">
-                            Transfer ke jadwal lain milik <strong>agency sendiri</strong>. Otomatis disetujui. 
-                            Penumpang pindah jadwal, pendapatan agency akan disesuaikan.
-                        </p>
-                    </div>
-                    <div class="card">
-                        <h3 class="font-bold text-lg mb-3">External Transfer</h3>
-                        <p class="text-sm text-gray-500 dark:text-gray-400 font-light">
-                            Transfer ke jadwal <strong>agency lain</strong>. Perlu persetujuan agency penerima. 
-                            Ada biaya transfer per penumpang.
-                        </p>
-                    </div>
-                </div>
+
+            <div class="doc-section" id="approval">
+                <h2>🕓 Approval Pengajuan Supir</h2>
+                <p>Driver dapat mengajukan jadwal sendiri. Pengajuan masuk ke halaman <strong>Pengajuan Supir</strong>.</p>
+                <div class="step"><div class="num">✓</div><div><h4>Setujui</h4><p>Pilih metode pembayaran (checklist) → jadwal aktif. Jika mengizinkan COD, deposit di-hold dari saldo.</p></div></div>
+                <div class="step"><div class="num">✕</div><div><h4>Tolak</h4><p>Sertakan alasan — driver melihatnya di aplikasi.</p></div></div>
+                <div class="callout warn">⚠️ Jadwal yang masih <strong>pending</strong> belum tampil di pencarian customer.</div>
             </div>
-            
-            <!-- Wallet -->
-            <div id="wallet">
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="h-px w-8 bg-[#C1121F]/40"></div>
-                    <h2 class="text-2xl font-bold">💵 Pendapatan Agency</h2>
-                </div>
-                
-                <div class="card">
-                    <div class="space-y-3">
-                        <div class="flex justify-between items-center p-3 bg-[#F5F5F5] dark:bg-[#1a1a1a] rounded-xl">
-                            <div>
-                                <span class="font-medium text-sm">Dana Siap Dicairkan</span>
-                                <p class="text-xs text-gray-500 dark:text-gray-400 font-light">Hasil penjualan yang telah selesai dan siap dicairkan ke rekening</p>
-                            </div>
-                            <span class="text-green-600 font-bold">Siap dicairkan</span>
-                        </div>
-                        <div class="flex justify-between items-center p-3 bg-[#F5F5F5] dark:bg-[#1a1a1a] rounded-xl">
-                            <div>
-                                <span class="font-medium text-sm">Pendapatan Dalam Proses</span>
-                                <p class="text-xs text-gray-500 dark:text-gray-400 font-light">Dalam proses perjalanan selesai dan proses settlement</p>
-                            </div>
-                            <span class="text-yellow-600 font-bold">Dalam proses</span>
-                        </div>
-                        <div class="flex justify-between items-center p-3 bg-[#F5F5F5] dark:bg-[#1a1a1a] rounded-xl">
-                            <div>
-                                <span class="font-medium text-sm">Deposit Jaminan COD</span>
-                                <p class="text-xs text-gray-500 dark:text-gray-400 font-light">Dana jaminan untuk layanan COD</p>
-                            </div>
-                            <span class="text-blue-600 font-bold">Jaminan</span>
-                        </div>
-                    </div>
-                </div>
+
+            <div class="doc-section" id="driver">
+                <h2>👨‍✈️ Kelola Driver</h2>
+                <p>Kelola data driver, pantau jadwal hari ini &amp; mendatang, lokasi terakhir, serta riwayat perjalanan tiap driver.</p>
             </div>
-            
-            <!-- Withdrawal -->
-            <div id="withdrawal">
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="h-px w-8 bg-[#C1121F]/40"></div>
-                    <h2 class="text-2xl font-bold">🏦 Pencairan Pendapatan</h2>
-                </div>
-                <div class="card">
-                    <ul class="space-y-2 text-sm text-gray-500 dark:text-gray-400 font-light">
-                        <li>• Minimal penarikan: <strong>Rp 100.000</strong></li>
-                        <li>• Biaya admin: <strong>Rp 5.000</strong> per penarikan</li>
-                        <li>• Auto-approve untuk penarikan di bawah <strong>Rp 5.000.000</strong></li>
-                        <li>• Di atas Rp 5.000.000 → perlu approval manual admin</li>
-                        <li>• Dana masuk ke rekening dalam 1-3 hari kerja</li>
-                    </ul>
-                </div>
+
+            <div class="doc-section" id="transfer">
+                <h2>🔄 Transfer Penumpang</h2>
+                <p>Penumpang dapat dialihkan ke jadwal lain jika diperlukan. Transfer oleh supir kini <strong>gratis</strong> (solidaritas antar supir).</p>
+                <div class="callout info">💡 Transfer <strong>internal</strong> (agenda sama) otomatis disetujui; transfer <strong>eksternal</strong> (antar agency) menunggu persetujuan agency penerima.</div>
             </div>
-            
-            <!-- Rental -->
-            <div id="rental">
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="h-px w-8 bg-[#C1121F]/40"></div>
-                    <h2 class="text-2xl font-bold">🚗 Setup Kendaraan Rental</h2>
+
+            <div class="doc-section" id="wallet">
+                <h2>💰 Dompet, Komisi &amp; COD</h2>
+                <div class="kv" style="margin-bottom:14px">
+                    <dt>Saldo</dt><dd>Deposit, saldo tersedia, dan pending balance.</dd>
+                    <dt>Komisi</dt><dd>Komisi per transaksi; kebijakan per-agency (override komisi) diatur admin.</dd>
+                    <dt>Koin COD</dt><dd>Saldo virtual dari admin untuk mendukung transaksi cash-on-delivery tanpa deposit riil.</dd>
                 </div>
-                <div class="card">
-                    <ol class="space-y-2 text-sm text-gray-500 dark:text-gray-400 font-light list-decimal list-inside">
-                        <li>Buka <strong>Dashboard Rental</strong> → <strong>Setup Kendaraan</strong></li>
-                        <li>Pilih kendaraan, klik <strong>Setup Rental</strong></li>
-                        <li>Tentukan harga per jam & per hari</li>
-                        <li>Centang tipe sewa: Lepas Kunci dan/atau Dengan Supir</li>
-                        <li>Atur biaya supir, syarat penyewa, syarat & ketentuan</li>
-                        <li>Pilih lokasi pengambilan (alamat agency atau kustom)</li>
-                        <li>Simpan setup</li>
-                    </ol>
-                </div>
+                <div class="callout info">💡 Cek halaman <strong>Personalisasi Agency</strong> (admin) untuk pengaturan COD, OTS, komisi, dan settlement tiap agency.</div>
             </div>
-            
-            <!-- COD -->
-            <div id="cod">
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="h-px w-8 bg-[#C1121F]/40"></div>
-                    <h2 class="text-2xl font-bold">🚗 COD & Deposit Jaminan COD</h2>
-                </div>
-                <div class="card">
-                    <p class="text-gray-500 dark:text-gray-400 font-light leading-relaxed mb-4">
-                        Untuk mengaktifkan fitur COD di jadwal, agency perlu <strong>Deposit Jaminan COD</strong> sebagai jaminan.
-                    </p>
-                    <div class="bg-[#F5F5F5] dark:bg-[#1a1a1a] rounded-xl p-4">
-                        <p class="text-sm font-medium mb-2">Cara mengisi Deposit Jaminan COD:</p>
-                        <ul class="text-sm text-gray-500 dark:text-gray-400 font-light space-y-1 list-disc list-inside">
-                            <li>Transfer dari Dana Siap Dicairkan (gratis, tanpa biaya)</li>
-                            <li>Setor Deposit melalui Midtrans (biaya admin Rp 3.500)</li>
-                        </ul>
-                    </div>
-                </div>
+
+            <div class="doc-section" id="withdraw">
+                <h2>🏦 Pencairan &amp; Settlement</h2>
+                <p>Ajukan pencairan saldo tersedia. Settlement komisi diproses sesuai jadwal kebijakan (harian / mingguan / bulanan). Riwayat pencairan &amp; settlement tercatat lengkap.</p>
             </div>
-            
-            <!-- FAQ -->
-            <div id="faq">
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="h-px w-8 bg-[#C1121F]/40"></div>
-                    <h2 class="text-2xl font-bold">❓ FAQ Agency</h2>
-                </div>
-                
-                <div class="space-y-3">
-                    <div class="card">
-                        <h3 class="font-bold mb-2">Berapa lama verifikasi agency?</h3>
-                        <p class="text-sm text-gray-500 dark:text-gray-400 font-light">1-3 hari kerja setelah dokumen lengkap.</p>
-                    </div>
-                    <div class="card">
-                        <h3 class="font-bold mb-2">Bisa berapa kendaraan per agency?</h3>
-                        <p class="text-sm text-gray-500 dark:text-gray-400 font-light">Tidak dibatasi. Tambahkan sebanyak yang Anda punya.</p>
-                    </div>
-                    <div class="card">
-                        <h3 class="font-bold mb-2">Bagaimana jika jadwal sepi?</h3>
-                        <p class="text-sm text-gray-500 dark:text-gray-400 font-light">Gunakan fitur Transfer Penumpang untuk menggabungkan ke jadwal lain.</p>
-                    </div>
-                    <div class="card">
-                        <h3 class="font-bold mb-2">Berapa komisi platform?</h3>
-                        <p class="text-sm text-gray-500 dark:text-gray-400 font-light">Komisi platform 5% dari total booking. Sudah termasuk biaya payment gateway.</p>
-                    </div>
-                </div>
+
+            <div class="doc-section" id="laporan">
+                <h2>📈 Laporan</h2>
+                <p>Tab laporan terpisah untuk <strong>Travel</strong> (booking, selesai, pendapatan, tren bulanan, rute populer) dan <strong>Rental</strong> (total, selesai, aktif, pendapatan, kendaraan terlaris) — lengkap dengan grafik.</p>
             </div>
-            
         </div>
     </div>
 </div>
-
-<script>
-function scrollToSection(event, id) {
-    event.preventDefault();
-    const element = document.getElementById(id);
-    if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-    document.querySelectorAll('.doc-sidebar-link').forEach(link => {
-        link.classList.remove('active');
-    });
-    event.target.classList.add('active');
-}
-</script>
