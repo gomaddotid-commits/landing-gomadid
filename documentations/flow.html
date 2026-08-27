@@ -2,15 +2,15 @@
     <div class="doc-wrap">
         <aside class="doc-side reveal">
             <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
-                <div class="b-icon" style="margin:0">📊</div>
+                <div class="b-icon" style="margin:0"></div>
                 <div style="font-weight:800;font-size:1.05rem">Alur Transaksi</div>
             </div>
             <nav class="doc-nav">
-                <a href="#travel" class="active" onclick="scrollToSection(event,'travel')">🚐 Alur Booking Travel</a>
-                <a href="#rental" onclick="scrollToSection(event,'rental')">🚗 Alur Rental</a>
-                <a href="#pembayaran" onclick="scrollToSection(event,'pembayaran')">💳 Alur Pembayaran</a>
-                <a href="#transfer" onclick="scrollToSection(event,'transfer')">🔄 Transfer Penumpang</a>
-                <a href="#proposal" onclick="scrollToSection(event,'proposal')">🕓 Pengajuan Jadwal Supir</a>
+                <a href="#travel" class="active" onclick="scrollToSection(event,'travel')">Alur Booking Travel</a>
+                <a href="#rental" onclick="scrollToSection(event,'rental')">Alur Rental</a>
+                <a href="#pembayaran" onclick="scrollToSection(event,'pembayaran')">Alur Pembayaran</a>
+                <a href="#transfer" onclick="scrollToSection(event,'transfer')">Transfer Penumpang</a>
+                <a href="#proposal" onclick="scrollToSection(event,'proposal')">Pengajuan Jadwal Supir</a>
             </nav>
             <div style="margin-top:20px;padding-top:18px;border-top:1px solid var(--line)">
                 <a href="#/docs" style="display:inline-flex;align-items:center;gap:6px;font-size:.9rem;color:var(--ink-soft)">← Kembali ke Dokumentasi</a>
@@ -19,7 +19,7 @@
 
         <div>
             <div class="doc-section" id="travel">
-                <h2>🚐 Alur Booking Travel</h2>
+                <h2>Alur Booking Travel</h2>
                 <p>Perjalanan booking travel dari pencarian sampai keberangkatan.</p>
                 <div class="b-cell flat">
                     <div class="mermaid">
@@ -36,7 +36,7 @@ flowchart LR
             </div>
 
             <div class="doc-section" id="rental">
-                <h2>🚗 Alur Rental (Lepas Kunci)</h2>
+                <h2>Alur Rental (Lepas Kunci)</h2>
                 <p>Verifikasi dokumen → pilih mobil → bayar → ambil mobil.</p>
                 <div class="b-cell flat">
                     <div class="mermaid">
@@ -49,11 +49,11 @@ flowchart LR
   F --> G[Ambil Mobil — Lepas Kunci]
                     </div>
                 </div>
-                <div class="callout info">💡 Berkas penyewa diserahkan ke agency otomatis saat masa sewa dimulai.</div>
+                <div class="callout info">Berkas penyewa diserahkan ke agency otomatis saat masa sewa dimulai.</div>
             </div>
 
             <div class="doc-section" id="pembayaran">
-                <h2>💳 Alur Pembayaran</h2>
+                <h2>Alur Pembayaran</h2>
                 <p>Empat jalur pembayaran yang didukung platform.</p>
                 <div class="b-cell flat">
                     <div class="mermaid">
@@ -75,7 +75,7 @@ flowchart TB
             </div>
 
             <div class="doc-section" id="transfer">
-                <h2>🔄 Transfer Penumpang</h2>
+                <h2>Transfer Penumpang</h2>
                 <p>Penumpang dialihkan antar jadwal secara gratis.</p>
                 <div class="b-cell flat">
                     <div class="mermaid">
@@ -91,7 +91,7 @@ flowchart LR
             </div>
 
             <div class="doc-section" id="proposal">
-                <h2>🕓 Pengajuan Jadwal Supir</h2>
+                <h2>Pengajuan Jadwal Supir</h2>
                 <p>Driver mengusulkan jadwal, agency menyetujui, jadwal tampil ke customer.</p>
                 <div class="b-cell flat">
                     <div class="mermaid">
