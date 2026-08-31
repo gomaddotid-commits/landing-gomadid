@@ -270,7 +270,7 @@ function renderPopularRoutes(routes) {
   c.innerHTML = routes.slice(0, 4).map(r => `
     <div class="b-cell flat" style="display:flex;justify-content:space-between;align-items:center;padding:16px 18px">
       <div style="display:flex;align-items:center;gap:12px">
-        <div class="b-icon" style="margin:0">📍</div>
+        <div class="b-icon" style="margin:0"><svg class="gi" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><use href="#i-map-pin"></use></svg></div>
         <div>
           <div style="font-weight:700;font-size:.92rem">${r.origin_city} → ${r.destination_city}</div>
           <div class="faint" style="font-size:.78rem">${r.schedules_count} jadwal</div>
@@ -289,7 +289,7 @@ function renderTopAgencies(agencies) {
       <div style="flex:1">
         <div style="font-weight:700;font-size:.92rem">${a.agency_name}</div>
         <div style="display:flex;gap:6px;align-items:center;font-size:.8rem">
-          <span class="rating">★★★★★</span><span class="faint">${a.rating || '0.0'} · ${a.total_bookings || 0} booking</span>
+          <span class="rating"><svg class="gi" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><use href="#i-star"></use></svg><svg class="gi" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><use href="#i-star"></use></svg><svg class="gi" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><use href="#i-star"></use></svg><svg class="gi" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><use href="#i-star"></use></svg><svg class="gi" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><use href="#i-star"></use></svg></span><span class="faint">${a.rating || '0.0'} · ${a.total_bookings || 0} booking</span>
         </div>
       </div>
     </div>`).join('');

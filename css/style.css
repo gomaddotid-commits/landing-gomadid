@@ -336,7 +336,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 /* ==================== FEATURE PILLS / LISTS ==================== */
 .check { display: flex; gap: 10px; align-items: flex-start; font-size: .95rem; color: var(--ink-soft); }
-.check::before { content: '✓'; color: var(--accent); font-weight: 800; margin-top: -1px; }
+.check::before { content: '●'; color: var(--accent); font-weight: 800; margin-top: -1px; }
 .pill { display: inline-flex; align-items: center; gap: 7px; padding: 8px 14px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--line); font-size: .85rem; font-weight: 600; }
 
 /* ==================== DOCUMENTATION ==================== */
