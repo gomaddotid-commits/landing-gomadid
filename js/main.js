@@ -239,7 +239,7 @@ function initNavScroll() {
 async function syncLandingData() {
   const host = location.hostname;
   const apiBase = host.includes('localhost') || host.includes('127.0.0.1')
-    ? 'http://localhost:8000/api/v1/landing'
+    ? 'http://localhost:8080/api/v1/landing'
     : 'https://web.gomad.id/api/v1/landing';
   try {
     const res = await fetch(`${apiBase}/all`);
